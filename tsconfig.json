@@ -1,0 +1,32 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "compilerOptions": {
+    "strict": true,
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true, // allow importing JSON files
+    "removeComments": true, // remove comments from output
+    "verbatimModuleSyntax": true, // ensure imports are used
+    "jsx": "preserve", // 指定 jsx 代码的生成: 'preserve', 'react-native', or 'react'
+    "jsxImportSource": "solid-js",
+    "noEmit": true, // 不生成输出文件
+    "isolatedModules": true, // 将每个文件作为单独的模块 （与 'ts.transpileModule' 类似）.
+    "baseUrl": ".", // 设置项目的基本路径，用于解析模块的相对路径。
+    "paths": {
+      "@components/*": ["src/components/*"],
+      "@layouts/*": ["src/layouts/*"],
+      "@/*": ["src/*"]
+    },
+    // "outDir": "dist",
+    "types": [] // 需要包含的类型声明文件名列表
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "src/**/*.json",
+    "src/**/*.astro"
+  ]
+}
