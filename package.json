@@ -19,7 +19,7 @@
     "@astrojs/node": "^8.2.3",
     "@astrojs/solid-js": "^4.0.1",
     "astro": "^4.4.12",
-    "canvas-confetti": "^1.9.2",
+    "astro-compress": "^2.2.11",
     "solid-js": "^1.8.15",
     "typescript": "^5.3.3"
   },
