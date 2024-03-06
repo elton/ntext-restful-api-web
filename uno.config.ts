@@ -24,6 +24,10 @@ export default defineConfig({
   presets: [
     presetUno(),
     presetIcons({
+      // collections: {
+      //   logos: () =>
+      //     import('@iconify-json/logos/icons.json').then((i) => i.default),
+      // },
       extraProperties: {
         display: 'inline-block',
         'vertical-align': 'middle',

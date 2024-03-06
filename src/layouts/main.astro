@@ -1,15 +1,18 @@
 ---
-const { content } = Astro.props
+import Footer from '@/components/Footer.astro'
+const { title, description = '' } = Astro.props
 ---
 
 <html lang='en'>
   <head>
     <meta charset='utf-8' />
     <meta name='viewport' content='width=device-width' />
+    <meta name='description' content={description} />
     <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
-    <title>{content.title}</title>
+    <title>{title}</title>
   </head>
   <body>
-    <slot />
+    <main class='container mx-auto'><slot /></main>
+    <Footer />
   </body>
 </html>

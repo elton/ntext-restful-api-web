@@ -1,19 +1,27 @@
 ---
 // Component Imports
-import Button from '@components/Button.astro'
+import Main from '@layouts/Main.astro'
+import Table from '@components/UserTable'
 ---
 
-<html lang='en'>
-  <head>
-    <meta charset='utf-8' />
-    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
-    <meta name='viewport' content='width=device-width' />
-    <meta name='generator' content={Astro.generator} />
-    <title>Astro + UnoCSS</title>
-  </head>
-  <body>
-    <div class='grid place-items-center h-screen content-center'>
-      <Button>UnoCSS Button in Astro!</Button>
+<Main
+  title='Astro + UnoCSS'
+  description='a demo web client app build with astro, solidjs, typescript and unoCSS for Ntex restful api server'>
+  <div>
+    <div
+      class='flex w-full items-center justify-center gap-x-4 text-4xl p-2 my-8'>
+      <!-- Use any icon with Pure CSS for UnoCSS. https://unocss.dev/presets/icons -->
+      <div class='i-logos-astro w-6em h-2em transform transition-800'></div>
+      <div class='text-4xl font-semibold text-gray-700'>+</div>
+      <div class='i-logos-unocss w-2em h-2em'></div>
     </div>
-  </body>
-</html>
+    <div class='text-4xl font-semibold text-center text-blueGray-600'>
+      Demo Application
+    </div>
+  </div>
+  <div class='w-5xl mx-auto my-8'>
+    <!-- Astro中的模版指令 client:visible 表示一旦组件进入用户的视口，就加载组件的 JavaScript 并使其激活。 对于折叠在下面的组件或者比较占用资源的组件可以用这个方法 -->
+    <!-- 不加入 client:* 模板指令的话，默认组件是不执行组件中的任何Javascript代码的，只支持静态HTML -->
+    <Table client:visible />
+  </div>
+</Main>
