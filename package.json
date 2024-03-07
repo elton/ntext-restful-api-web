@@ -20,6 +20,7 @@
     "@astrojs/solid-js": "^4.0.1",
     "astro": "^4.4.13",
     "astro-compress": "^2.2.11",
+    "date-fns": "^3.3.1",
     "solid-js": "^1.8.15",
     "typescript": "^5.4.2"
   },

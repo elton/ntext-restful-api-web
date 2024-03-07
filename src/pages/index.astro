@@ -2,6 +2,9 @@
 // Component Imports
 import Main from '@layouts/Main.astro'
 import Table from '@components/UserTable'
+
+// 是否预渲染,如果是SSR则为false,如果是CSR则为true
+export const prerender = true
 ---
 
 <Main

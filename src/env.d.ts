@@ -13,5 +13,6 @@ export type User = {
 
 // 用户响应类型
 export type UserResponse = {
+  count: number
   data: User[]
 }
