@@ -18,10 +18,10 @@
     "@astrojs/check": "^0.5.6",
     "@astrojs/node": "^8.2.3",
     "@astrojs/solid-js": "^4.0.1",
-    "astro": "^4.4.12",
+    "astro": "^4.4.13",
     "astro-compress": "^2.2.11",
     "solid-js": "^1.8.15",
-    "typescript": "^5.3.3"
+    "typescript": "^5.4.2"
   },
   "devDependencies": {
     "@iconify-json/heroicons": "^1.1.20",
