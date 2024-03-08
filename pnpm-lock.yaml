@@ -10,13 +10,13 @@ dependencies:
     version: 0.5.6(prettier-plugin-astro@0.13.0)(typescript@5.4.2)
   '@astrojs/node':
     specifier: ^8.2.3
-    version: 8.2.3(astro@4.4.13)
+    version: 8.2.3(astro@4.4.14)
   '@astrojs/solid-js':
     specifier: ^4.0.1
     version: 4.0.1(solid-js@1.8.15)(vite@5.1.5)
   astro:
-    specifier: ^4.4.13
-    version: 4.4.13(typescript@5.4.2)
+    specifier: ^4.4.14
+    version: 4.4.14(typescript@5.4.2)
   astro-compress:
     specifier: ^2.2.11
     version: 2.2.11
@@ -155,12 +155,12 @@ packages:
       - supports-color
     dev: false
 
-  /@astrojs/node@8.2.3(astro@4.4.13):
+  /@astrojs/node@8.2.3(astro@4.4.14):
     resolution: {integrity: sha512-VQQy7QIv4X+5dlKCEchYIxMFryS+BwDOFGNzeRmHe1/P819TlNup9/M8XqnWW4aZPxV7P6CoDeFxX6HuT/kOmQ==}
     peerDependencies:
       astro: ^4.2.0
     dependencies:
-      astro: 4.4.13(typescript@5.4.2)
+      astro: 4.4.14(typescript@5.4.2)
       send: 0.18.0
       server-destroy: 1.0.1
     transitivePeerDependencies:
@@ -1599,8 +1599,8 @@ packages:
       terser: 5.28.1
     dev: false
 
-  /astro@4.4.13(typescript@5.4.2):
-    resolution: {integrity: sha512-kx2k2DJd9Os15zJBo8fK01/2F7/4wH6sAKmlBHlkGHIFm6CKSSzWCK/IWQ0DybNWtthK9A3HDZ4VYWv0BJDOBg==}
+  /astro@4.4.14(typescript@5.4.2):
+    resolution: {integrity: sha512-b8l8NyUP38sWDkCSx9PKTX8aISIXhEGCnsx5FugOTyMisYeeY2hwyaiUpL11WvNJafq28RY0RMO+HWBR6te6fA==}
     engines: {node: '>=18.14.1', npm: '>=6.14.0'}
     hasBin: true
     dependencies:

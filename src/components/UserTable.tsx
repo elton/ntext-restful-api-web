@@ -3,6 +3,7 @@ import { format, parseISO } from 'date-fns'
 import type { Component, JSX } from 'solid-js'
 import { For, Show, createEffect, createSignal, onMount } from 'solid-js'
 
+import EditUserModal from './EditUserModal'
 import Pagination from './Pagination'
 
 // 是否预渲染,如果是SSR则为false,如果是CSR则为true
@@ -17,8 +18,12 @@ const UserTable: Component = (): JSX.Element => {
   const [pageSize, _] = createSignal(10)
   const [amount, setAmount] = createSignal(0)
   const [paginationNumbers, setPaginationNumbers] = createSignal<number[]>([])
+  const [showModal, setShowModal] = createSignal(false)
+  const [selectedUserId, setSelectedUserId] = createSignal<number | null>(null)
+  const [searchInput, setSearchInput] = createSignal('')
+  const [searchTerm, setSearchTerm] = createSignal('')
 
-  const fetchUsers = async () => {
+  const fetchUsers = async (searchTerm = '') => {
     setLoading(true)
     try {
       const response = await fetch(`${API_ENDPOINT}/users/search`, {
@@ -27,15 +32,15 @@ const UserTable: Component = (): JSX.Element => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          search_term: '',
-          sort_by: 'created_at',
+          search_term: searchTerm,
+          sort_by: 'modified_at',
           order_by: 'desc',
           page: page(),
           page_size: pageSize(),
         }),
       })
       const { count, data: users }: UserResponse = await response.json()
-      setUsers(users)
+      setUsers(users as User[])
       setAmount(count)
       // console.log(users)
     } catch (error) {
@@ -67,13 +72,38 @@ const UserTable: Component = (): JSX.Element => {
     // 计算总页数, 向上取整. Math.ceil(11.5) = 12
     const totalPages = Math.ceil(totalRecords / pageSize)
     let startPage = Math.floor((currentPage - 1) / range) * range + 1
-    let endPage = Math.min(startPage + 4, totalPages)
+    let endPage = Math.min(startPage + range - 1, totalPages)
     const pages = Array.from(
       { length: endPage - startPage + 1 },
       (_, i) => startPage + i,
     )
 
     setPaginationNumbers(pages)
+  }
+
+  const handleEditClick = (userId: number) => {
+    setSelectedUserId(userId)
+    setShowModal(true)
+  }
+
+  const handleModalClose = async () => {
+    setShowModal(false)
+    setSelectedUserId(null)
+    // 重新获取用户列表
+    await fetchUsers(searchTerm())
+  }
+
+  const handleInput = (event: InputEvent) => {
+    setSearchInput((event.currentTarget as HTMLInputElement).value)
+  }
+
+  const handleKeyDown = (event: KeyboardEvent) => {
+    if (event.key === 'Enter') {
+      const trimmedInput = searchInput().trim()
+      if (trimmedInput !== '') {
+        setSearchTerm(trimmedInput)
+      }
+    }
   }
 
   onMount(() => {
@@ -86,7 +116,7 @@ const UserTable: Component = (): JSX.Element => {
   })
 
   createEffect(async () => {
-    await fetchUsers()
+    await fetchUsers(searchTerm())
     generatePaginationNumbers(page(), 5, pageSize(), amount())
   })
 
@@ -123,6 +153,10 @@ const UserTable: Component = (): JSX.Element => {
           <input
             type='text'
             id='table-search'
+            value={searchInput()}
+            onInput={handleInput}
+            onKeyDown={handleKeyDown}
+            onFocus={() => setSearchInput('')}
             class='block py-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:(bg-light-200ring-blue-500 border-blue-500) dark:(bg-light-400bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500)'
             placeholder='Search for items'
           />
@@ -161,7 +195,7 @@ const UserTable: Component = (): JSX.Element => {
           </tr>
         </thead>
         <tbody>
-          <For each={users()}>
+          <For each={users() as User[]}>
             {(user) => (
               <tr class='bg-white border-b dark:(bg-gray-800 border-gray-700 hover:bg-gray-600) hover:bg-gray-50 '>
                 <td class='w-4 p-4'>
@@ -201,14 +235,13 @@ const UserTable: Component = (): JSX.Element => {
                   </div>
                 </td>
                 <td class='px-6 py-4'>
-                  <a
-                    href='#'
-                    type='button'
+                  <button
                     data-modal-target='editUserModal'
                     data-modal-show='editUserModal'
-                    class='font-medium text-blue-600 dark:text-blue-500 hover:underline'>
+                    class='font-medium text-blue-600 dark:text-blue-500 hover:underline'
+                    onClick={() => handleEditClick(user.id)}>
                     Edit user
-                  </a>
+                  </button>
                 </td>
               </tr>
             )}
@@ -225,6 +258,10 @@ const UserTable: Component = (): JSX.Element => {
         prevPage={prevPage}
         nextPage={nextPage}
       />
+
+      <Show when={showModal()}>
+        <EditUserModal userID={selectedUserId()} onClose={handleModalClose} />
+      </Show>
     </Show>
   )
 }
