@@ -25,6 +25,8 @@ const UserTable: Component = (): JSX.Element => {
 
   const fetchUsers = async (searchTerm = '') => {
     setLoading(true)
+    // set page to 1 when searching
+    setPage(1)
     try {
       const response = await fetch(`${API_ENDPOINT}/users/search`, {
         method: 'POST',
