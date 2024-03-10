@@ -16,6 +16,7 @@
     "paths": {
       "@components/*": ["src/components/*"],
       "@layouts/*": ["src/layouts/*"],
+      "@store/*": ["src/store/*"],
       "@/*": ["src/*"]
     },
     // "outDir": "dist",

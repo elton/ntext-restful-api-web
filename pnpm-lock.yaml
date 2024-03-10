@@ -14,6 +14,9 @@ dependencies:
   '@astrojs/solid-js':
     specifier: ^4.0.1
     version: 4.0.1(solid-js@1.8.15)(vite@5.1.5)
+  '@nanostores/solid':
+    specifier: ^0.4.2
+    version: 0.4.2(nanostores@0.10.0)(solid-js@1.8.15)
   astro:
     specifier: ^4.4.15
     version: 4.4.15(typescript@5.4.2)
@@ -23,6 +26,9 @@ dependencies:
   date-fns:
     specifier: ^3.3.1
     version: 3.3.1
+  nanostores:
+    specifier: ^0.10.0
+    version: 0.10.0
   solid-js:
     specifier: ^1.8.15
     version: 1.8.15
@@ -991,6 +997,16 @@ packages:
 
   /@medv/finder@3.2.0:
     resolution: {integrity: sha512-JmU7JIBwyL8RAzefvzALT4sP2M0biGk8i2invAgpQmma/QgfsaqoHIvJ7S0YC8n9hUVG8X3Leul2nGa06PvhbQ==}
+    dev: false
+
+  /@nanostores/solid@0.4.2(nanostores@0.10.0)(solid-js@1.8.15):
+    resolution: {integrity: sha512-8v32+C9KdRbnvP4x4Oiw/CtL1tZwbRxYfmFsPIY9PXevCgxSFnicG6VnLLtNAR7F0kl8Ec7OROHO34Ffv0KDzg==}
+    peerDependencies:
+      nanostores: '>=0.8.0'
+      solid-js: ^1.6.0
+    dependencies:
+      nanostores: 0.10.0
+      solid-js: 1.8.15
     dev: false
 
   /@nodelib/fs.scandir@2.1.5:
@@ -3559,6 +3575,11 @@ packages:
     resolution: {integrity: sha512-eSRppjcPIatRIMC1U6UngP8XFcz8MQWGQdt1MTBQ7NaAmvXDfvNxbvWV3x2y6CdEUciCSsDHDQZbhYaB8QEo2g==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
+
+  /nanostores@0.10.0:
+    resolution: {integrity: sha512-Poy5+9wFXOD0jAstn4kv9n686U2BFw48z/W8lms8cS8lcbRz7BU20JxZ3e/kkKQVfRrkm4yLWCUA6GQINdvJCQ==}
+    engines: {node: ^18.0.0 || >=20.0.0}
+    dev: false
 
   /napi-build-utils@1.0.2:
     resolution: {integrity: sha512-ONmRUqK7zj7DWX0D9ADe03wbwOBZxNAfF20PlGfCWQcD3+/MakShIHrMqx9YwPTfxDdF1zLeL+RGZiR9kGMLdg==}

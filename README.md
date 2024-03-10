@@ -6,3 +6,6 @@ A web client built with `Astro` and `UnoCSS`, and the backend is a restful API s
 
 - [Astro](https://astro.build/)
 - [UnoCSS](https://unocss.com/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [SolidJS](https://solidjs.com/)
+- [Nano Store](https://github.com/nanostores/nanostores)
