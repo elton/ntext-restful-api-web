@@ -3,7 +3,13 @@ import Footer from '@/components/Footer.astro'
 // 是否预渲染,如果是SSR则为false,如果是CSR则为true
 export const prerender = true
 
-const { title, description = '' } = Astro.props
+interface Props {
+  title: string
+  description?: string
+  bgColor?: string
+}
+
+const { title, description = '', bgColor = 'bg-white' } = Astro.props
 ---
 
 <html lang='en'>
@@ -14,8 +20,10 @@ const { title, description = '' } = Astro.props
     <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
     <title>{title}</title>
   </head>
-  <body>
-    <main class='container mx-auto'><slot /></main>
+  <body class={bgColor}>
+    <main class='container mx-auto'>
+      <slot />
+    </main>
     <Footer />
   </body>
 </html>

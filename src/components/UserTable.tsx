@@ -1,4 +1,4 @@
-import type { User, UserResponse } from '@/env'
+import type { APIResponse, User, UserData } from '@/env'
 import { format, parseISO } from 'date-fns'
 import type { Component, JSX } from 'solid-js'
 import { For, Show, createEffect, createSignal, onMount } from 'solid-js'
@@ -9,7 +9,7 @@ import Pagination from './Pagination'
 // 是否预渲染,如果是SSR则为false,如果是CSR则为true
 export const prerender = false
 
-const API_ENDPOINT = import.meta.env.PUBLIC_BACKEND_ENDPOINT as string
+const API_ENDPOINT = import.meta.env.PUBLIC_BACKEND_ENDPOINT
 
 const UserTable: Component = (): JSX.Element => {
   const [users, setUsers] = createSignal<User[]>([])
@@ -26,7 +26,8 @@ const UserTable: Component = (): JSX.Element => {
   const fetchUsers = async (searchTerm = '') => {
     setLoading(true)
     // set page to 1 when searching
-    setPage(1)
+    searchTerm && setPage(1)
+
     try {
       const response = await fetch(`${API_ENDPOINT}/users/search`, {
         method: 'POST',
@@ -41,7 +42,8 @@ const UserTable: Component = (): JSX.Element => {
           page_size: pageSize(),
         }),
       })
-      const { count, data: users }: UserResponse = await response.json()
+      const { count, data: users }: APIResponse<UserData> =
+        await response.json()
       setUsers(users as User[])
       setAmount(count)
       // console.log(users)
