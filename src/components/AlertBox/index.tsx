@@ -1,5 +1,5 @@
 import { useStore } from '@nanostores/solid'
-import { $alertStore } from '@store/alertStore'
+import { $alertStore } from '@store/AlertStore'
 import { Show, createEffect, createSignal, type Component } from 'solid-js'
 
 const AlertBox: Component = () => {

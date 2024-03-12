@@ -1,17 +1,17 @@
-import type { APIResponse, User, UserData } from '@/env'
 import { format, parseISO } from 'date-fns'
 import type { Component, JSX } from 'solid-js'
 import { For, Show, createEffect, createSignal, onMount } from 'solid-js'
+import type { APIResponse, User, UserData } from './types'
 
-import EditUserModal from './EditUserModal'
-import Pagination from './Pagination'
+import Modal from '../Modal'
+import Pagination from '../Pagination'
 
 // 是否预渲染,如果是SSR则为false,如果是CSR则为true
 export const prerender = false
 
 const API_ENDPOINT = import.meta.env.PUBLIC_BACKEND_ENDPOINT
 
-const UserTable: Component = (): JSX.Element => {
+const Table: Component = (): JSX.Element => {
   const [users, setUsers] = createSignal<User[]>([])
   const [loading, setLoading] = createSignal(true)
   const [page, setPage] = createSignal(1)
@@ -276,11 +276,11 @@ const UserTable: Component = (): JSX.Element => {
         />
 
         <Show when={showModal()}>
-          <EditUserModal userID={selectedUserId()} onClose={handleModalClose} />
+          <Modal userID={selectedUserId()} onClose={handleModalClose} />
         </Show>
       </Show>
     </>
   )
 }
 
-export default UserTable
+export default Table

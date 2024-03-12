@@ -1,17 +1,8 @@
 import { Show, type Component } from 'solid-js'
+import type { PaginationProps } from './types'
 
 // 是否预渲染,如果是SSR则为false,如果是CSR则为true
 export const prerender = true
-
-interface PaginationProps {
-  currentPage: number
-  totalPages: number
-  pageSize: number
-  paginationNumbers: number[]
-  onPageChange: (page: number) => void
-  prevPage: () => void
-  nextPage: () => void
-}
 
 const Pagination: Component<PaginationProps> = (props) => {
   return (

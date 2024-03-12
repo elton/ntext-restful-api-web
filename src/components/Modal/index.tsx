@@ -1,10 +1,11 @@
-import type { User, UserResponse } from '@/env'
+import type { APIResponse, User, UserData } from '@components/Table/types'
+import type { EditUserModalProps } from './types'
 
 import type { Component } from 'solid-js'
 import { Show, createSignal, onMount } from 'solid-js'
 
 // import the store for the alert box
-import { $alertStore } from '@store/alertStore'
+import { $alertStore } from '@store/AlertStore'
 
 // 是否预渲染,如果是SSR则为false,如果是CSR则为true
 export const prerender = false
@@ -17,12 +18,7 @@ enum UserRole {
   USER = 'user',
 }
 
-interface EditUserModalProps {
-  userID: number | null
-  onClose: () => void
-}
-
-const EditUserModal: Component<EditUserModalProps> = (props) => {
+const Modal: Component<EditUserModalProps> = (props) => {
   const [user, setUser] = createSignal<User>({
     email: '',
     name: '',
@@ -81,7 +77,7 @@ const EditUserModal: Component<EditUserModalProps> = (props) => {
 
   const fetchUser = async (id: number) => {
     const response = await fetch(`${API_ENDPOINT}/user/${id}`)
-    const { data: user }: UserResponse = await response.json()
+    const { data: user }: APIResponse<UserData> = await response.json()
     return user as User
   }
 
@@ -331,4 +327,4 @@ const EditUserModal: Component<EditUserModalProps> = (props) => {
   )
 }
 
-export default EditUserModal
+export default Modal
