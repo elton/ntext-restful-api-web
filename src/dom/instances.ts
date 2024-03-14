@@ -96,7 +96,7 @@ class Instances {
   }
 
   _generateRandomId() {
-    return Math.random().toString(36).substr(2, 9)
+    return Math.random().toString(36).slice(2, 9)
   }
 
   private _componentAndInstanceCheck(
@@ -120,7 +120,3 @@ class Instances {
 const instances = new Instances()
 
 export default instances
-
-// if (typeof window !== 'undefined') {
-//   window.FlowbiteInstances = instances
-// }

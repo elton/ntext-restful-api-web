@@ -266,7 +266,7 @@ class Carousel implements CarouselInterface {
 
   /**
    * Set the currently active item and data attribute
-   * @param {*} position
+   * @param {*} item
    */
   _setActiveItem(item: CarouselItem) {
     this._activeItem = item
