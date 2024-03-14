@@ -15,11 +15,11 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "^0.5.7",
+    "@astrojs/check": "^0.5.9",
     "@astrojs/node": "^8.2.3",
     "@astrojs/solid-js": "^4.0.1",
     "@nanostores/solid": "^0.4.2",
-    "astro": "^4.5.1",
+    "astro": "^4.5.2",
     "astro-compress": "^2.2.14",
     "date-fns": "^3.4.0",
     "nanostores": "^0.10.0",
