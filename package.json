@@ -19,7 +19,7 @@
     "@astrojs/node": "^8.2.3",
     "@astrojs/solid-js": "^4.0.1",
     "@nanostores/solid": "^0.4.2",
-    "astro": "^4.5.2",
+    "astro": "^4.5.4",
     "astro-compress": "^2.2.14",
     "date-fns": "^3.4.0",
     "nanostores": "^0.10.0",
@@ -30,9 +30,9 @@
     "@iconify-json/heroicons": "^1.1.20",
     "@iconify-json/logos": "^1.1.42",
     "@iconify-json/svg-spinners": "^1.1.2",
-    "@unocss/preset-icons": "^0.58.5",
-    "@unocss/reset": "^0.58.5",
+    "@unocss/preset-icons": "^0.58.6",
+    "@unocss/reset": "^0.58.6",
     "prettier-plugin-astro": "^0.13.0",
-    "unocss": "^0.58.5"
+    "unocss": "^0.58.6"
   }
 }
