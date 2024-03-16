@@ -19,9 +19,9 @@
     "@astrojs/node": "^8.2.3",
     "@astrojs/solid-js": "^4.0.1",
     "@nanostores/solid": "^0.4.2",
-    "astro": "^4.5.4",
-    "astro-compress": "^2.2.14",
-    "date-fns": "^3.4.0",
+    "astro": "^4.5.5",
+    "astro-compress": "^2.2.15",
+    "date-fns": "^3.5.0",
     "nanostores": "^0.10.0",
     "solid-js": "^1.8.15",
     "typescript": "^5.4.2"
