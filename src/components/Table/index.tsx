@@ -1,7 +1,8 @@
 import { format, parseISO } from 'date-fns'
 import type { Component, JSX } from 'solid-js'
 import { For, Show, createEffect, createSignal, onMount } from 'solid-js'
-import type { APIResponse, User, UserData } from './types'
+import type { APIResponse, User } from '../types'
+import type { UserData } from './types'
 
 import Modal from '../Modal'
 import Pagination from '../Pagination'

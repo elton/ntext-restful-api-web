@@ -8,6 +8,14 @@ import AlertBox from '@components/AlertBox'
 export const prerender = true
 ---
 
+<script>
+  const access_token = localStorage.getItem('access_token')
+  console.log(access_token)
+  if (!access_token) {
+    window.location.href = '/login'
+  }
+</script>
+
 <Main
   title='Astro + UnoCSS'
   description='a demo web client app build with astro, solidjs, typescript and unoCSS for Ntex restful api server'>
