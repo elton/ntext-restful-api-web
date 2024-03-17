@@ -27,7 +27,7 @@ To access the API server, I use the fetch API and JSON Web Token to authenticate
 
 I will finish this part later.
 
-## ## Definition of success
+## Definition of success
 
 The project can access the API server and display the data on the front-end site. The user can log in and log out, and the user's access token is stored in the local storage of the browser, and the access token will be invalid when token has expired.
 
