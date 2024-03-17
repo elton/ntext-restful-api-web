@@ -28,7 +28,10 @@ const AlertBox: Component = () => {
           <div class='i-heroicons:shield-check-16-solid w-1.5em h-1.5em text-green-800'></div>
         )}
 
-        <div class='ms-3 text-sm font-medium'>{alertStore().message}</div>
+        <div
+          class='ms-3 text-sm font-medium'
+          innerHTML={alertStore().message}
+        />
         <button
           type='button'
           class={`ml-2 rounded-lg inline-flex items-center justify-center h-8 w-8 p-1.5 ${alertStore().type === 'error' ? ' focus:(ring-2 ring-red-400) bg-red-100 text-red-500 hover:bg-red-200 dark:(bg-gray-800 text-red-400 hover:bg-gray-700)' : 'focus:(ring-2 ring-green-400) bg-green-100 text-green-500 hover:bg-green-200 dark:(bg-gray-800 text-green-400 hover:bg-gray-700)'} `}

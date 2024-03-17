@@ -5,7 +5,7 @@ import type { LoginData, LoginValues } from './types'
 
 // import the store for the alert box
 import { $alertStore } from '@store/AlertStore'
-import { isLogin } from '@store/UserStore'
+import { $isLogin } from '@store/UserStore'
 
 // 是否预渲染,如果是SSR则为false,如果是CSR则为true
 export const prerender = true
@@ -55,7 +55,8 @@ const LoginForm: Component = () => {
       localStorage.setItem('access_token', data.token.access_token)
       localStorage.setItem('refresh_token', data.token.refresh_token)
 
-      isLogin.set(true)
+      // store the user data in the user store
+      $isLogin.set(true)
     }
   }
 

@@ -7,6 +7,9 @@ import type { UserData } from './types'
 import Modal from '../Modal'
 import Pagination from '../Pagination'
 
+// import the store for the alert box
+import { $alertStore } from '@store/AlertStore'
+
 // 是否预渲染,如果是SSR则为false,如果是CSR则为true
 export const prerender = false
 
@@ -23,11 +26,24 @@ const Table: Component = (): JSX.Element => {
   const [selectedUserId, setSelectedUserId] = createSignal<number | null>(null)
   const [searchInput, setSearchInput] = createSignal('')
   const [searchTerm, setSearchTerm] = createSignal('')
+  const [isLogin, setIsLogin] = createSignal(false)
 
   const fetchUsers = async (searchTerm = '') => {
     setLoading(true)
     // set page to 1 when searching
     searchTerm && setPage(1)
+
+    // load access_token from local storage
+    const access_token = localStorage.getItem('access_token')
+    if (!access_token) {
+      $alertStore.setKey(
+        'message',
+        "You need to login to access this page <a href='/login' style='text-decoration-line: underline; font-weight: 600;' >Login now</a>",
+      )
+      $alertStore.setKey('type', 'error')
+      setIsLogin(false)
+      return
+    }
 
     try {
       const response = await fetch(`${API_ENDPOINT}/users/search`, {
@@ -128,9 +144,9 @@ const Table: Component = (): JSX.Element => {
   return (
     <>
       <Show
-        when={!loading()}
+        when={!loading() && isLogin()}
         fallback={
-          <div class='flex space-x-3 w-fit mx-auto items-center'>
+          <div class='flex space-x-3 w-fit mx-auto items-center '>
             <div class='i-svg-spinners:3-dots-bounce w-1em h-1em text-sky-700'></div>
             <div class='text-sky-700'>Loading...</div>
           </div>

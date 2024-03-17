@@ -9,11 +9,14 @@ import AlertBox from '@components/AlertBox'
 ---
 
 <script>
-  const access_token = localStorage.getItem('access_token')
-  console.log(access_token)
-  if (access_token) {
-    window.location.href = '/'
-  }
+  import { $isLogin } from '../store/UserStore'
+
+  // 如果已经登录,则跳转到首页
+  $isLogin.subscribe((login: boolean) => {
+    if (login) {
+      window.location.href = '/'
+    }
+  })
 </script>
 
 <Main
