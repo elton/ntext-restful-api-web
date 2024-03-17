@@ -9,6 +9,7 @@ import Pagination from '../Pagination'
 
 // import the store for the alert box
 import { $alertStore } from '@store/AlertStore'
+import { $isLogin } from '@store/UserStore'
 
 // 是否预渲染,如果是SSR则为false,如果是CSR则为true
 export const prerender = false
@@ -132,8 +133,24 @@ const Table: Component = (): JSX.Element => {
     console.log(`当前Node环境: ${import.meta.env.MODE}`)
     console.log(`当前后端地址: ${API_ENDPOINT}`)
 
-    // 设置loading状态为true
-    setLoading(true)
+    // load access_token from local storage
+    const access_token = localStorage.getItem('access_token')
+    if (!access_token) {
+      $alertStore.setKey(
+        'message',
+        "You need to login to access this page <a href='/login' style='text-decoration-line: underline; font-weight: 600;' >Login now</a>",
+      )
+      $alertStore.setKey('type', 'error')
+      $isLogin.set(false)
+      setIsLogin(false)
+      return
+    } else {
+      $isLogin.set(true)
+      setIsLogin(true)
+
+      // 设置loading状态为true
+      setLoading(true)
+    }
   })
 
   createEffect(async () => {
