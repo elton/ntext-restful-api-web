@@ -9,8 +9,8 @@ dependencies:
     specifier: ^0.5.9
     version: 0.5.9(prettier-plugin-astro@0.13.0)(typescript@5.4.2)
   '@astrojs/node':
-    specifier: ^8.2.3
-    version: 8.2.3(astro@4.5.5)
+    specifier: ^8.2.4
+    version: 8.2.4(astro@4.5.6)
   '@astrojs/solid-js':
     specifier: ^4.0.1
     version: 4.0.1(solid-js@1.8.15)(vite@5.1.5)
@@ -18,14 +18,14 @@ dependencies:
     specifier: ^0.4.2
     version: 0.4.2(nanostores@0.10.0)(solid-js@1.8.15)
   astro:
-    specifier: ^4.5.5
-    version: 4.5.5(typescript@5.4.2)
+    specifier: ^4.5.6
+    version: 4.5.6(typescript@5.4.2)
   astro-compress:
     specifier: ^2.2.15
     version: 2.2.15
   date-fns:
-    specifier: ^3.5.0
-    version: 3.5.0
+    specifier: ^3.6.0
+    version: 3.6.0
   nanostores:
     specifier: ^0.10.0
     version: 0.10.0
@@ -165,12 +165,12 @@ packages:
       - supports-color
     dev: false
 
-  /@astrojs/node@8.2.3(astro@4.5.5):
-    resolution: {integrity: sha512-VQQy7QIv4X+5dlKCEchYIxMFryS+BwDOFGNzeRmHe1/P819TlNup9/M8XqnWW4aZPxV7P6CoDeFxX6HuT/kOmQ==}
+  /@astrojs/node@8.2.4(astro@4.5.6):
+    resolution: {integrity: sha512-5Wvtnm4fv9Vp/OJ5UeMRWMBy2KOJGCMgfwg05qqadtnHYeJHgoAR6hK06ox+7HBvf/+X/iL67muPPq3jKucX/w==}
     peerDependencies:
       astro: ^4.2.0
     dependencies:
-      astro: 4.5.5(typescript@5.4.2)
+      astro: 4.5.6(typescript@5.4.2)
       send: 0.18.0
       server-destroy: 1.0.1
     transitivePeerDependencies:
@@ -1619,8 +1619,8 @@ packages:
       terser: 5.29.2
     dev: false
 
-  /astro@4.5.5(typescript@5.4.2):
-    resolution: {integrity: sha512-gZ3jR06dLmY9/SMkKMr+3pRSrUjhuwjnXt+9abFJV3WGwhCnLZbSNsTBrLMsaFHpAS1ReJChcTWyKRCvs/jCIQ==}
+  /astro@4.5.6(typescript@5.4.2):
+    resolution: {integrity: sha512-/pXr+tDvgps1x3w+9i48XzfNPDr4NrT89EJPeCTL57IjaTpitSQ8Oy10Fv6zAqXNLIUJ5j3P1c+fJx+taKIg0g==}
     engines: {node: '>=18.14.1', npm: '>=6.14.0'}
     hasBin: true
     dependencies:
@@ -2101,8 +2101,8 @@ packages:
     resolution: {integrity: sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==}
     dev: false
 
-  /date-fns@3.5.0:
-    resolution: {integrity: sha512-a+DwyXn7NOfdJireCzAA0B9p7jIXEu/Q9JKCyMYvH6+0vPUNbQceA0neXrdfJ/xzl3mhOh5vibQQ3936Tssm6A==}
+  /date-fns@3.6.0:
+    resolution: {integrity: sha512-fRHTG8g/Gif+kSh50gaGEdToemgfj74aRX3swtiouboip5JDLAyDE9F11nHMIcvOaXeOC6D7SpNhi7uFyB7Uww==}
     dev: false
 
   /debug@2.6.9:

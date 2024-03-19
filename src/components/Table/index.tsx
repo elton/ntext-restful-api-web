@@ -28,29 +28,22 @@ const Table: Component = (): JSX.Element => {
   const [searchInput, setSearchInput] = createSignal('')
   const [searchTerm, setSearchTerm] = createSignal('')
   const [isLogin, setIsLogin] = createSignal(false)
+  const [accessToken, setAccessToken] = createSignal('')
+  const [refreshToken, setRefreshToken] = createSignal('')
 
   const fetchUsers = async (searchTerm = '') => {
     setLoading(true)
     // set page to 1 when searching
     searchTerm && setPage(1)
 
-    // load access_token from local storage
-    const access_token = localStorage.getItem('access_token')
-    if (!access_token) {
-      $alertStore.setKey(
-        'message',
-        "You need to login to access this page <a href='/login' style='text-decoration-line: underline; font-weight: 600;' >Login now</a>",
-      )
-      $alertStore.setKey('type', 'error')
-      setIsLogin(false)
-      return
-    }
-
     try {
       const response = await fetch(`${API_ENDPOINT}/users/search`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          Accept: 'application/json',
+          // Authorization header with Bearer token
+          Authorization: `Bearer ${accessToken()}`,
         },
         body: JSON.stringify({
           search_term: searchTerm,
@@ -145,6 +138,7 @@ const Table: Component = (): JSX.Element => {
       setIsLogin(false)
       return
     } else {
+      setAccessToken(access_token)
       $isLogin.set(true)
       setIsLogin(true)
 
