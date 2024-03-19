@@ -26,6 +26,7 @@ const Modal: Component<EditUserModalProps> = (props) => {
     password: '',
     role: '',
   })
+  const [accessToken, setAccessToken] = createSignal('')
 
   // 定义密码校验规则
   const passwordRegex =
@@ -77,16 +78,27 @@ const Modal: Component<EditUserModalProps> = (props) => {
   }
 
   const fetchUser = async (id: number) => {
-    const response = await fetch(`${API_ENDPOINT}/user/${id}`)
+    const response = await fetch(`${API_ENDPOINT}/users?id=${id}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        // Authorization header with Bearer token
+        Authorization: `Bearer ${accessToken()}`,
+      },
+    })
     const { data: user }: APIResponse<UserData> = await response.json()
-    return user as User
+    return user as User[]
   }
 
   const updateUser = async (user: User) => {
-    const response = await fetch(`${API_ENDPOINT}/user/${user.id}`, {
+    const response = await fetch(`${API_ENDPOINT}/users`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
+        Accept: 'application/json',
+        // Authorization header with Bearer token
+        Authorization: `Bearer ${accessToken()}`,
       },
       body: JSON.stringify(user),
     })
@@ -103,10 +115,13 @@ const Modal: Component<EditUserModalProps> = (props) => {
   }
 
   const createUser = async (user: User) => {
-    const response = await fetch(`${API_ENDPOINT}/user`, {
+    const response = await fetch(`${API_ENDPOINT}/users`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        Accept: 'application/json',
+        // Authorization header with Bearer token
+        Authorization: `Bearer ${accessToken()}`,
       },
       body: JSON.stringify(user),
     })
@@ -123,8 +138,14 @@ const Modal: Component<EditUserModalProps> = (props) => {
   }
 
   const deleteUser = async (id: number) => {
-    const response = await fetch(`${API_ENDPOINT}/user/${id}`, {
+    const response = await fetch(`${API_ENDPOINT}/users?id=${id}`, {
       method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        // Authorization header with Bearer token
+        Authorization: `Bearer ${accessToken()}`,
+      },
     })
     return response.json()
   }
@@ -135,8 +156,22 @@ const Modal: Component<EditUserModalProps> = (props) => {
   }
 
   onMount(async () => {
+    // load access_token from local storage
+    const access_token = localStorage.getItem('access_token')
+    if (!access_token) {
+      $alertStore.setKey(
+        'message',
+        "You need to login to access this page <a href='/login' style='text-decoration-line: underline; font-weight: 600;' >Login now</a>",
+      )
+      $alertStore.setKey('type', 'error')
+      return
+    } else {
+      setAccessToken(access_token)
+    }
+
     if (props.userID) {
-      setUser(await fetchUser(props.userID))
+      const userArray = await fetchUser(props.userID)
+      setUser(userArray[0])
     }
   })
   return (

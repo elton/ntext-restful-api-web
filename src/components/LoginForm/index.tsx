@@ -32,10 +32,11 @@ const LoginForm: Component = () => {
     }
 
     // send the login request to the API
-    const response = await fetch(`${API_ENDPOINT}/user/login`, {
+    const response = await fetch(`${API_ENDPOINT}/users/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        Accept: 'application/json',
       },
       body: JSON.stringify(loginData),
     })
