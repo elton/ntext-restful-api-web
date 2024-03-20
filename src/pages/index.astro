@@ -7,18 +7,6 @@ import UserInfo from '@components/UserInfo.astro'
 ---
 
 <script>
-  // import { $isLogin } from '../store/UserStore'
-
-  // 如果未登录,则跳转到登录页面
-  // $isLogin.subscribe((login: boolean) => {
-  //   if (!login) {
-  //     console.log('login?:', login)
-  //     // localStorage.removeItem('access_token')
-  //     // localStorage.removeItem('refresh_token')
-  //     // window.location.href = '/login'
-  //   }
-  // })
-
   localStorage.getItem('access_token') || (window.location.href = '/login')
 </script>
 

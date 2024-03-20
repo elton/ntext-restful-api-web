@@ -138,6 +138,10 @@ const Table: Component = (): JSX.Element => {
         "You need to login to access this page <a href='/login' style='text-decoration-line: underline; font-weight: 600;' >Login now</a>",
       )
 
+      //TODO
+      // use refresh token to get a new access token when the current one is expired
+      // redirect to login page when the refresh token is expired
+
       // remove the access token from the local storage if it's expired
       isExpired && localStorage.removeItem('access_token')
 

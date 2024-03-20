@@ -5,7 +5,6 @@ import type { LoginData, LoginValues } from './types'
 
 // import the store for the alert box
 import { $alertStore } from '@store/AlertStore'
-import { $isLogin } from '@store/UserStore'
 
 const API_ENDPOINT = import.meta.env.PUBLIC_BACKEND_ENDPOINT
 
@@ -52,9 +51,7 @@ const LoginForm: Component = () => {
     if (data?.token) {
       localStorage.setItem('access_token', data.token.access_token)
       localStorage.setItem('refresh_token', data.token.refresh_token)
-
-      // store the user data in the user store
-      $isLogin.set(true)
+      window.location.href = '/'
     }
   }
 
