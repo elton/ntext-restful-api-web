@@ -1,4 +1,4 @@
-import type { APIResponse, User } from '@components/types'
+import type { APIResponse } from '@components/types'
 import type { Component } from 'solid-js'
 import { createSignal } from 'solid-js'
 import type { LoginData, LoginValues } from './types'
@@ -6,9 +6,6 @@ import type { LoginData, LoginValues } from './types'
 // import the store for the alert box
 import { $alertStore } from '@store/AlertStore'
 import { $isLogin } from '@store/UserStore'
-
-// 是否预渲染,如果是SSR则为false,如果是CSR则为true
-export const prerender = true
 
 const API_ENDPOINT = import.meta.env.PUBLIC_BACKEND_ENDPOINT
 

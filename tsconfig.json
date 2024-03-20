@@ -29,6 +29,6 @@
     "src/**/*.vue",
     "src/**/*.json",
     "src/**/*.astro",
-    "src/middleware.js"
+    "src/middleware.js" // use compression middleware
   ]
 }

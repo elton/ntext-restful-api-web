@@ -1,4 +1,3 @@
-import node from '@astrojs/node'
 import solid from '@astrojs/solid-js'
 import compress from 'astro-compress'
 import { defineConfig } from 'astro/config'
@@ -6,15 +5,15 @@ import UnoCSS from 'unocss/astro'
 
 // https://astro.build/config
 export default defineConfig({
-  output: 'hybrid',
+  // output: 'hybrid',
   // server: {
   //   headers: {
   //     'Access-Control-Allow-Origin': '*',
   //   },
   // },
-  adapter: node({
-    mode: 'standalone',
-  }),
+  // adapter: node({
+  //   mode: 'standalone',
+  // }),
   integrations: [
     UnoCSS({
       injectReset: true,

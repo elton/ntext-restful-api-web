@@ -1,9 +1,6 @@
 import { Show, type Component } from 'solid-js'
 import type { PaginationProps } from './types'
 
-// 是否预渲染,如果是SSR则为false,如果是CSR则为true
-export const prerender = true
-
 const Pagination: Component<PaginationProps> = (props) => {
   return (
     <nav

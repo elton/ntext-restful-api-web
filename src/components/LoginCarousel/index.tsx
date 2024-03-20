@@ -2,9 +2,6 @@ import { initCarousels } from '@components/Carousel'
 import type { Component, JSX } from 'solid-js'
 import { onMount } from 'solid-js'
 
-// 是否预渲染,如果是SSR则为false,如果是CSR则为true
-export const prerender = true
-
 const LoginCarousel: Component = (): JSX.Element => {
   onMount(() => initCarousels())
   return (

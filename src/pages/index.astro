@@ -3,36 +3,58 @@
 import Main from '@layouts/Main.astro'
 import Table from '@components/Table'
 import AlertBox from '@components/AlertBox'
-
-// 是否预渲染,如果是SSR则为false,如果是CSR则为true
-export const prerender = true
+import UserInfo from '@components/UserInfo.astro'
 ---
 
 <script>
-  const access_token = localStorage.getItem('access_token')
-  console.log(access_token)
-  if (!access_token) {
-    window.location.href = '/login'
-  }
+  // import { $isLogin } from '../store/UserStore'
+
+  // 如果未登录,则跳转到登录页面
+  // $isLogin.subscribe((login: boolean) => {
+  //   if (!login) {
+  //     console.log('login?:', login)
+  //     // localStorage.removeItem('access_token')
+  //     // localStorage.removeItem('refresh_token')
+  //     // window.location.href = '/login'
+  //   }
+  // })
+
+  localStorage.getItem('access_token') || (window.location.href = '/login')
 </script>
 
 <Main
   title='Astro + UnoCSS'
   description='a demo web client app build with astro, solidjs, typescript and unoCSS for Ntex restful api server'>
   <AlertBox client:load />
-
-  <div>
-    <div
-      class='flex w-full items-center justify-center gap-x-4 text-4xl p-2 my-8'>
-      <!-- Use any icon with Pure CSS for UnoCSS. https://unocss.dev/presets/icons -->
-      <div class='i-logos-astro w-6em h-2em transform transition-800'></div>
-      <div class='text-4xl font-semibold text-gray-700'>+</div>
-      <div class='i-logos-unocss w-2em h-2em'></div>
+  <div class='flex justify-between'>
+    <div class='w-fit mx-auto grow'>
+      <div
+        class='flex w-full items-center justify-center gap-x-4 text-4xl p-2 my-8'>
+        <!-- Use any icon with Pure CSS for UnoCSS. https://unocss.dev/presets/icons -->
+        <div class='i-logos-astro w-6em h-2em transform transition-800'></div>
+        <div class='text-4xl font-semibold text-gray-700'>+</div>
+        <div class='i-logos-unocss w-2em h-2em'></div>
+      </div>
+      <div class='text-4xl font-semibold text-center text-blueGray-600'>
+        Demo Application
+      </div>
     </div>
-    <div class='text-4xl font-semibold text-center text-blueGray-600'>
-      Demo Application
+    <div>
+      <div class='flex h-fit space-x-2 items-center mr-4 pt-4 shrink'>
+        <div class='text-center space-y-2'>
+          <img
+            class='w-10 h-10 rounded-full block'
+            src={`https://i.pravatar.cc/100`}
+            alt={`avatar`}
+          />
+          <div class='text-xs text-gray-500'>Elton</div>
+        </div>
+        <div class='i-heroicons:chevron-down-16-solid w-1em h-1em'></div>
+      </div>
+      <UserInfo />
     </div>
   </div>
+
   <div class='w-5xl mx-auto my-8'>
     <!-- Astro中的模版指令 client:visible 表示一旦组件进入用户的视口，就加载组件的 JavaScript 并使其激活。 对于折叠在下面的组件或者比较占用资源的组件可以用这个方法 -->
     <!-- 不加入 client:* 模板指令的话，默认组件是不执行组件中的任何Javascript代码的，只支持静态HTML -->

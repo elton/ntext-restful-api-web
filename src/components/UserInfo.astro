@@ -1,0 +1,20 @@
+---
+
+---
+
+<script>
+  const handleLogout = () => {
+    localStorage.removeItem('access_token')
+    localStorage.removeItem('refresh_token')
+    window.location.href = '/login'
+  }
+  document.getElementById('logout')?.addEventListener('click', handleLogout)
+</script>
+<div class='relative mt-2'>
+  <div
+    class='absolute right-2 bg-indigo-100 p-4 w-24 rounded-lg text-center space-y-2 backdrop-blur-sm'>
+    <a class='text-xs block' href='#'>Setting</a>
+    <a class='text-xs block' href='#'>Help</a>
+    <a id='logout' class='text-xs block' href='#'> Logout </a>
+  </div>
+</div>

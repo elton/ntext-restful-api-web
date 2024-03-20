@@ -8,9 +8,6 @@ import { Show, createSignal, onMount } from 'solid-js'
 // import the store for the alert box
 import { $alertStore } from '@store/AlertStore'
 
-// 是否预渲染,如果是SSR则为false,如果是CSR则为true
-export const prerender = false
-
 const API_ENDPOINT = import.meta.env.PUBLIC_BACKEND_ENDPOINT as string
 
 // define the enum for the user role

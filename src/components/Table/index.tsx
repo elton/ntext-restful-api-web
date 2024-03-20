@@ -2,17 +2,15 @@ import { format, parseISO } from 'date-fns'
 import type { Component, JSX } from 'solid-js'
 import { For, Show, createEffect, createSignal, onMount } from 'solid-js'
 import type { APIResponse, User } from '../types'
-import type { UserData } from './types'
+import type { Claims, UserData } from './types'
 
 import Modal from '../Modal'
 import Pagination from '../Pagination'
 
 // import the store for the alert box
 import { $alertStore } from '@store/AlertStore'
-import { $isLogin } from '@store/UserStore'
 
-// 是否预渲染,如果是SSR则为false,如果是CSR则为true
-export const prerender = false
+import * as jose from 'jose'
 
 const API_ENDPOINT = import.meta.env.PUBLIC_BACKEND_ENDPOINT
 
@@ -128,18 +126,26 @@ const Table: Component = (): JSX.Element => {
 
     // load access_token from local storage
     const access_token = localStorage.getItem('access_token')
-    if (!access_token) {
+
+    // decode the access token
+    const claims = access_token && jose.decodeJwt<Claims>(access_token)
+    // check if the token is expired
+    const isExpired = claims && claims.exp < Date.now() / 1000
+
+    if (!access_token || isExpired) {
       $alertStore.setKey(
         'message',
         "You need to login to access this page <a href='/login' style='text-decoration-line: underline; font-weight: 600;' >Login now</a>",
       )
+
+      // remove the access token from the local storage if it's expired
+      isExpired && localStorage.removeItem('access_token')
+
       $alertStore.setKey('type', 'error')
-      $isLogin.set(false)
       setIsLogin(false)
       return
     } else {
       setAccessToken(access_token)
-      $isLogin.set(true)
       setIsLogin(true)
 
       // 设置loading状态为true
