@@ -39,25 +39,13 @@ import UserInfo from '@components/UserInfo.astro'
         Demo Application
       </div>
     </div>
-    <div>
-      <div class='flex h-fit space-x-2 items-center mr-4 pt-4 shrink'>
-        <div class='text-center space-y-2'>
-          <img
-            class='w-10 h-10 rounded-full block'
-            src={`https://i.pravatar.cc/100`}
-            alt={`avatar`}
-          />
-          <div class='text-xs text-gray-500'>Elton</div>
-        </div>
-        <div class='i-heroicons:chevron-down-16-solid w-1em h-1em'></div>
-      </div>
-      <UserInfo />
-    </div>
-  </div>
 
-  <div class='w-5xl mx-auto my-8'>
-    <!-- Astro中的模版指令 client:visible 表示一旦组件进入用户的视口，就加载组件的 JavaScript 并使其激活。 对于折叠在下面的组件或者比较占用资源的组件可以用这个方法 -->
-    <!-- 不加入 client:* 模板指令的话，默认组件是不执行组件中的任何Javascript代码的，只支持静态HTML -->
-    <Table client:visible />
+    <UserInfo />
   </div>
 </Main>
+
+<div class='w-5xl mx-auto my-8'>
+  <!-- Astro中的模版指令 client:visible 表示一旦组件进入用户的视口，就加载组件的 JavaScript 并使其激活。 对于折叠在下面的组件或者比较占用资源的组件可以用这个方法 -->
+  <!-- 不加入 client:* 模板指令的话，默认组件是不执行组件中的任何Javascript代码的，只支持静态HTML -->
+  <Table client:visible />
+</div>
