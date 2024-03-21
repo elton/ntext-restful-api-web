@@ -1,7 +1,7 @@
 import { format, parseISO } from 'date-fns'
 import type { Component, JSX } from 'solid-js'
 import { For, Show, createEffect, createSignal, onMount } from 'solid-js'
-import type { APIResponse, User } from '../types'
+import type { APIResponse, User } from '../../types'
 import type { Claims, UserData } from './types'
 
 import Modal from '../Modal'
@@ -10,6 +10,8 @@ import Pagination from '../Pagination'
 // import the store for the alert box
 import { $alertStore } from '@store/AlertStore'
 
+import { apiClient } from '@/request'
+import type { AxiosResponse } from 'axios'
 import * as jose from 'jose'
 
 const API_ENDPOINT = import.meta.env.PUBLIC_BACKEND_ENDPOINT
@@ -27,7 +29,6 @@ const Table: Component = (): JSX.Element => {
   const [searchTerm, setSearchTerm] = createSignal('')
   const [isLogin, setIsLogin] = createSignal(false)
   const [accessToken, setAccessToken] = createSignal('')
-  const [refreshToken, setRefreshToken] = createSignal('')
 
   const fetchUsers = async (searchTerm = '') => {
     setLoading(true)
@@ -35,27 +36,19 @@ const Table: Component = (): JSX.Element => {
     searchTerm && setPage(1)
 
     try {
-      const response = await fetch(`${API_ENDPOINT}/users/search`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-          // Authorization header with Bearer token
-          Authorization: `Bearer ${accessToken()}`,
-        },
-        body: JSON.stringify({
-          search_term: searchTerm,
-          sort_by: 'modified_at',
-          order_by: 'desc',
-          page: page(),
-          page_size: pageSize(),
-        }),
+      const filter = JSON.stringify({
+        search_term: searchTerm,
+        sort_by: 'modified_at',
+        order_by: 'desc',
+        page: page(),
+        page_size: pageSize(),
       })
-      const { count, data: users }: APIResponse<UserData> =
-        await response.json()
+
+      const response: AxiosResponse<APIResponse<UserData>> =
+        await apiClient.post('/users/search', filter)
+      const { count, data: users }: APIResponse<UserData> = response.data
       setUsers(users as User[])
       setAmount(count)
-      // console.log(users)
     } catch (error) {
       console.error('Error fetching users:', error)
     } finally {

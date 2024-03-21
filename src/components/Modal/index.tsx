@@ -1,5 +1,5 @@
 import type { UserData } from '@components/Table/types'
-import type { APIResponse, User } from '../types'
+import type { APIResponse, User } from '../../types'
 import type { EditUserModalProps } from './types'
 
 import type { Component } from 'solid-js'

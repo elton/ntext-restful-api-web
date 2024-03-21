@@ -6,6 +6,13 @@ export declare type APIResponse<T extends object> = {
   data: T
 }
 
+export declare type TokenResponse = {
+  token: {
+    access_token: string
+    refresh_token: string
+  }
+}
+
 // 用户类型
 export declare type User = {
   id?: number

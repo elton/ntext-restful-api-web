@@ -1,4 +1,4 @@
-import type { APIResponse } from '@components/types'
+import type { APIResponse } from '@/types'
 import type { Component } from 'solid-js'
 import { createSignal } from 'solid-js'
 import type { LoginData, LoginValues } from './types'
@@ -28,7 +28,7 @@ const LoginForm: Component = () => {
     }
 
     // send the login request to the API
-    const response = await fetch(`${API_ENDPOINT}/users/login`, {
+    const response = await fetch(`${API_ENDPOINT}/auth/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
