@@ -18,13 +18,13 @@
     "@astrojs/check": "^0.5.9",
     "@astrojs/solid-js": "^4.0.1",
     "@nanostores/solid": "^0.4.2",
-    "astro": "^4.5.6",
+    "astro": "^4.5.8",
     "astro-compress": "^2.2.15",
     "date-fns": "^3.6.0",
     "jose": "^5.2.3",
     "nanostores": "^0.10.0",
-    "solid-js": "^1.8.15",
-    "typescript": "^5.4.2"
+    "solid-js": "^1.8.16",
+    "typescript": "^5.4.3"
   },
   "devDependencies": {
     "@iconify-json/heroicons": "^1.1.20",
