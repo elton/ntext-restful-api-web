@@ -2,15 +2,13 @@ import { format, parseISO } from 'date-fns'
 import type { Component, JSX } from 'solid-js'
 import { For, Show, createEffect, createSignal, onMount } from 'solid-js'
 import type { APIResponse, User } from '../../types'
-import type { Claims, UserData } from './types'
-
 import Modal from '../Modal'
 import Pagination from '../Pagination'
-
+import type { Claims, UserData } from './types'
 // import the store for the alert box
-import { $alertStore } from '@store/AlertStore'
-
 import { apiClient } from '@/request'
+import { getAccessToken } from '@/request/tokens'
+import { $alertStore } from '@store/AlertStore'
 import type { AxiosResponse } from 'axios'
 import * as jose from 'jose'
 
@@ -27,8 +25,6 @@ const Table: Component = (): JSX.Element => {
   const [selectedUserId, setSelectedUserId] = createSignal<number | null>(null)
   const [searchInput, setSearchInput] = createSignal('')
   const [searchTerm, setSearchTerm] = createSignal('')
-  const [isLogin, setIsLogin] = createSignal(false)
-  const [accessToken, setAccessToken] = createSignal('')
 
   const fetchUsers = async (searchTerm = '') => {
     setLoading(true)
@@ -117,34 +113,22 @@ const Table: Component = (): JSX.Element => {
     console.log(`当前Node环境: ${import.meta.env.MODE}`)
     console.log(`当前后端地址: ${API_ENDPOINT}`)
 
-    // load access_token from local storage
-    const access_token = localStorage.getItem('access_token')
-
     // decode the access token
-    const claims = access_token && jose.decodeJwt<Claims>(access_token)
+    const claims = getAccessToken() && jose.decodeJwt<Claims>(getAccessToken()!)
     // check if the token is expired
     const isExpired = claims && claims.exp < Date.now() / 1000
 
-    if (!access_token || isExpired) {
+    if (!getAccessToken() || isExpired) {
       $alertStore.setKey(
         'message',
         "You need to login to access this page <a href='/login' style='text-decoration-line: underline; font-weight: 600;' >Login now</a>",
       )
+      $alertStore.setKey('type', 'error')
 
-      //TODO
-      // use refresh token to get a new access token when the current one is expired
-      // redirect to login page when the refresh token is expired
-
-      // remove the access token from the local storage if it's expired
       isExpired && localStorage.removeItem('access_token')
 
-      $alertStore.setKey('type', 'error')
-      setIsLogin(false)
       return
     } else {
-      setAccessToken(access_token)
-      setIsLogin(true)
-
       // 设置loading状态为true
       setLoading(true)
     }
@@ -158,7 +142,7 @@ const Table: Component = (): JSX.Element => {
   return (
     <>
       <Show
-        when={!loading() && isLogin()}
+        when={!loading()}
         fallback={
           <div class='flex space-x-3 w-fit mx-auto items-center '>
             <div class='i-svg-spinners:3-dots-bounce w-1em h-1em text-sky-700'></div>

@@ -1,12 +1,12 @@
+import { apiClient } from '@/request'
 import type { APIResponse } from '@/types'
+import type { AxiosError, AxiosResponse } from 'axios'
 import type { Component } from 'solid-js'
 import { createSignal } from 'solid-js'
 import type { LoginData, LoginValues } from './types'
 
 // import the store for the alert box
 import { $alertStore } from '@store/AlertStore'
-
-const API_ENDPOINT = import.meta.env.PUBLIC_BACKEND_ENDPOINT
 
 const LoginForm: Component = () => {
   const [loginValues, setLoginValues] = createSignal<LoginValues>({
@@ -27,31 +27,16 @@ const LoginForm: Component = () => {
       return
     }
 
-    // send the login request to the API
-    const response = await fetch(`${API_ENDPOINT}/auth/login`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-      body: JSON.stringify(loginData),
-    })
-
-    // handle wrong credentials
-    if (!response.ok) {
-      $alertStore.setKey('message', 'Wrong credentials')
-      $alertStore.setKey('type', 'error')
-      return
-    }
-
-    const { data }: APIResponse<LoginData> = await response.json()
-    console.log(data.token.access_token)
-
-    // store the tokens in the local storage
-    if (data?.token) {
-      localStorage.setItem('access_token', data.token.access_token)
-      localStorage.setItem('refresh_token', data.token.refresh_token)
-      window.location.href = '/'
+    try {
+      const response: AxiosResponse<APIResponse<LoginData>> =
+        await apiClient.post('/auth/login', JSON.stringify(loginData))
+      response.data.data.token && (window.location.href = '/')
+    } catch (error) {
+      if ((error as AxiosError).response?.status !== 200) {
+        $alertStore.setKey('message', 'Wrong credentials')
+        $alertStore.setKey('type', 'error')
+        return
+      }
     }
   }
 

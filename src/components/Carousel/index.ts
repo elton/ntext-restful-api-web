@@ -375,10 +375,4 @@ export function initCarousels() {
     }
   })
 }
-
-// if (typeof window !== 'undefined') {
-//   window.Carousel = Carousel
-//   window.initCarousels = initCarousels
-// }
-
 export default Carousel

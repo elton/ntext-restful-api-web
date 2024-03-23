@@ -15,11 +15,11 @@ dependencies:
     specifier: ^0.4.2
     version: 0.4.2(nanostores@0.10.0)(solid-js@1.8.16)
   astro:
-    specifier: ^4.5.8
-    version: 4.5.8(typescript@5.4.3)
+    specifier: ^4.5.9
+    version: 4.5.9(typescript@5.4.3)
   astro-compress:
-    specifier: ^2.2.15
-    version: 2.2.15
+    specifier: ^2.2.17
+    version: 2.2.17
   axios:
     specifier: ^1.6.8
     version: 1.6.8
@@ -1327,8 +1327,8 @@ packages:
       '@types/unist': 2.0.10
     dev: false
 
-  /@types/node@20.11.28:
-    resolution: {integrity: sha512-M/GPWVS2wLkSkNHVeLkrF2fD5Lx5UC4PxA0uZcKc6QqbIQUJyW1jVjueJYi1z8n0I5PxYrtpnPnWglE+y9A0KA==}
+  /@types/node@20.11.30:
+    resolution: {integrity: sha512-dHM6ZxwlmuZaRmUPfv1p+KrdD1Dci04FbdEm/9wEMouFqxYoFl5aMkt0VMAUtYRQDyYvD41WJLukhq/ha3YuTw==}
     dependencies:
       undici-types: 5.26.5
     dev: false
@@ -1707,13 +1707,13 @@ packages:
     resolution: {integrity: sha512-I1jXZMjAgCMmxT4qxXfPXa6SthSoE8h6gkSI9BGGNv8mP8G/v0blc+qFnZu6K42vTOiuME596QaLO0TP3Lk0xg==}
     dev: false
 
-  /astro-compress@2.2.15:
-    resolution: {integrity: sha512-ZiN+DanwGu/LbLdJ9Y7YAMxW0jTetFjmgjn34EVpDFwI8te+m4d4bOGY+mjGa58kyUC6YsmEW7YNx3HdWyfX5A==}
+  /astro-compress@2.2.17:
+    resolution: {integrity: sha512-nqwLZApVtoMyRjvvsWIyBkzj31YSHtzWPOCLdZZLSu94ieWxIzoapa0jD7Vt+K6Mzc+KfXPdB9dK+hDcJCy9wQ==}
     dependencies:
       '@types/csso': 5.0.4
       '@types/html-minifier-terser': 7.0.2
       csso: 5.0.5
-      files-pipe: 2.1.14
+      files-pipe: 2.1.15
       html-minifier-terser: 7.2.0
       kleur: 4.1.5
       lightningcss: 1.24.1
@@ -1722,8 +1722,8 @@ packages:
       terser: 5.29.2
     dev: false
 
-  /astro@4.5.8(typescript@5.4.3):
-    resolution: {integrity: sha512-bhKsoZQWT6LW8aYMvTGglZTPa3rYRbcdc2buiJyFPCvSWOOyZmxqpp6vtQ+x6fXxD8P1NecM/c4g5GaPi+MokQ==}
+  /astro@4.5.9(typescript@5.4.3):
+    resolution: {integrity: sha512-GheU72Goz7dYQNKaqTxB2H49cNvHfahGSbNkTvMXk+gyHf/g633qadqlO2ZQbTUacoUWmDzvS5fhMZt2/w4naQ==}
     engines: {node: '>=18.14.1', npm: '>=6.14.0'}
     hasBin: true
     dependencies:
@@ -1732,10 +1732,10 @@ packages:
       '@astrojs/markdown-remark': 4.3.1
       '@astrojs/telemetry': 3.0.4
       '@babel/core': 7.24.3
-      '@babel/generator': 7.23.6
-      '@babel/parser': 7.24.0
+      '@babel/generator': 7.24.1
+      '@babel/parser': 7.24.1
       '@babel/plugin-transform-react-jsx': 7.23.4(@babel/core@7.24.3)
-      '@babel/traverse': 7.24.0
+      '@babel/traverse': 7.24.1
       '@babel/types': 7.24.0
       '@types/babel__core': 7.20.5
       acorn: 8.11.3
@@ -2541,10 +2541,10 @@ packages:
     dependencies:
       reusify: 1.0.4
 
-  /files-pipe@2.1.14:
-    resolution: {integrity: sha512-6wykVgJsW4W/Dyb8roW08db3ZyiqYVLd/aD7K8O9YF+QtqzwaTL2smenmskY1KXCar22GH08CpOnwvCJusn2ug==}
+  /files-pipe@2.1.15:
+    resolution: {integrity: sha512-HYPXV6nh/H3U0WUDErZMVUoUJh15XDe5/rFwHWZXU5wIyCbCkA7UAuhLySs7sua3MRuwILuwZLDnQtXhaibNeg==}
     dependencies:
-      '@types/node': 20.11.28
+      '@types/node': 20.11.30
       deepmerge-ts: 5.1.0
       fast-glob: 3.3.2
     dev: false
