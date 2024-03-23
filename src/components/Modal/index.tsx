@@ -1,9 +1,9 @@
+import { apiClient } from '@/request'
 import type { APIResponse, User } from '@/types'
 import type { UserData } from '@components/Table/types'
-import type { EditUserModalProps } from './types'
-
 import type { Component } from 'solid-js'
 import { Show, createSignal, onMount } from 'solid-js'
+import type { EditUserModalProps } from './types'
 
 // import the store for the alert box
 import { $alertStore } from '@store/AlertStore'
@@ -75,31 +75,19 @@ const Modal: Component<EditUserModalProps> = (props) => {
   }
 
   const fetchUser = async (id: number) => {
-    const response = await fetch(`${API_ENDPOINT}/users?id=${id}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-        // Authorization header with Bearer token
-        Authorization: `Bearer ${accessToken()}`,
-      },
-    })
-    const { data: user }: APIResponse<UserData> = await response.json()
+    const response = await apiClient.get<APIResponse<UserData>>(
+      `${API_ENDPOINT}/users?id=${id}`,
+    )
+    const { data: user }: APIResponse<UserData> = response.data
     return user as User[]
   }
 
   const updateUser = async (user: User) => {
-    const response = await fetch(`${API_ENDPOINT}/users`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-        // Authorization header with Bearer token
-        Authorization: `Bearer ${accessToken()}`,
-      },
-      body: JSON.stringify(user),
-    })
-    const { status, message, data: new_user } = await response.json()
+    const response = await apiClient.put<APIResponse<UserData>>(
+      `${API_ENDPOINT}/users`,
+      JSON.stringify(user),
+    )
+    const { status, message, data: new_user } = response.data
     $alertStore.setKey('message', message)
 
     if (status === 'failed') {
@@ -112,39 +100,27 @@ const Modal: Component<EditUserModalProps> = (props) => {
   }
 
   const createUser = async (user: User) => {
-    const response = await fetch(`${API_ENDPOINT}/users`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-        // Authorization header with Bearer token
-        Authorization: `Bearer ${accessToken()}`,
-      },
-      body: JSON.stringify(user),
-    })
-    const { status, message, data: new_user } = await response.json()
-    $alertStore.setKey('message', message)
+    await apiClient
+      .post<APIResponse<UserData>>(
+        `${API_ENDPOINT}/users`,
+        JSON.stringify(user),
+      )
+      .then((res) => {
+        const { message, data: new_user } = res.data
+        $alertStore.setKey('message', message)
+        $alertStore.setKey('type', 'success')
 
-    if (status === 'failed') {
-      $alertStore.setKey('type', 'error')
-      return
-    } else {
-      $alertStore.setKey('type', 'success')
-      return new_user
-    }
+        return new_user
+      })
+      .catch((error) => {
+        $alertStore.setKey('message', error.response.data.message)
+        $alertStore.setKey('type', 'error')
+      })
   }
 
   const deleteUser = async (id: number) => {
-    const response = await fetch(`${API_ENDPOINT}/users?id=${id}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-        // Authorization header with Bearer token
-        Authorization: `Bearer ${accessToken()}`,
-      },
-    })
-    return response.json()
+    const response = await apiClient.delete(`${API_ENDPOINT}/users?id=${id}`)
+    return response.data
   }
 
   const handleDelete = async (id: number, close: () => void) => {

@@ -4,6 +4,7 @@ import type { APIResponse } from '../types'
 import { isRefreshToken, refresh_token } from './refresh_token'
 import { getAccessToken, setAccessToken, setRefreshToken } from './tokens'
 
+// create an axios instance
 export const apiClient = axios.create({
   baseURL: import.meta.env.PUBLIC_BACKEND_ENDPOINT,
   headers: {
@@ -41,7 +42,6 @@ apiClient.interceptors.response.use(
       const isSuccess = await refresh_token()
       if (isSuccess) {
         // update the access token in the axios instance.
-
         apiClient.defaults.headers['Authorization'] =
           `Bearer ${getAccessToken()}`
 
@@ -50,6 +50,12 @@ apiClient.interceptors.response.use(
         // if refresh token is expired, redirect to login page.
         window.location.href = '/login'
       }
+    } else if (
+      error.response.status === 401 &&
+      isRefreshToken(error.response.config)
+    ) {
+      // redirect to log in page if refresh token is expired.
+      window.location.href = '/login'
     }
     return Promise.reject(error)
   },

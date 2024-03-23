@@ -26,3 +26,4 @@ This is a simple **pure static** web application for the Ntex Restful API server
 - [x] Can deploy this static web application to a CDN.
 - [ ] Support multiple languages.
 - [ ] Support dark mode.
+- [ ] Add SEO support.
