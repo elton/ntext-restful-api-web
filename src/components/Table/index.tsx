@@ -101,10 +101,7 @@ const Table: Component = (): JSX.Element => {
 
   const handleKeyDown = (event: KeyboardEvent) => {
     if (event.key === 'Enter') {
-      const trimmedInput = searchInput().trim()
-      if (trimmedInput !== '') {
-        setSearchTerm(trimmedInput)
-      }
+      setSearchTerm(searchInput().trim())
     }
   }
 

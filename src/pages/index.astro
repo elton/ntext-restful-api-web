@@ -3,11 +3,12 @@
 import Main from '@layouts/Main.astro'
 import Table from '@components/Table'
 import AlertBox from '@components/AlertBox'
-import UserInfo from '@components/UserInfo.astro'
+import UserInfo from '@components/UserInfo'
 ---
 
 <script>
-  localStorage.getItem('access_token') || (window.location.href = '/login')
+  import { getAccessToken } from '@/request/tokens'
+  getAccessToken() || (window.location.href = '/login')
 </script>
 
 <Main
@@ -28,13 +29,12 @@ import UserInfo from '@components/UserInfo.astro'
       </div>
     </div>
 
-    <UserInfo />
+    <UserInfo client:only />
+  </div>
+  <div class='w-5xl mx-auto my-8'>
+    <!-- Astro中的模版指令 client:visible 表示一旦组件进入用户的视口，就加载组件的 JavaScript 并使其激活。 对于折叠在下面的组件或者比较占用资源的组件可以用这个方法 -->
+    <!-- 不加入 client:* 模板指令的话，默认组件是不执行组件中的任何Javascript代码的，只支持静态HTML -->
+    <!-- client:only 仅在客户端执行 -->
+    <Table client:only />
   </div>
 </Main>
-
-<div class='w-5xl mx-auto my-8'>
-  <!-- Astro中的模版指令 client:visible 表示一旦组件进入用户的视口，就加载组件的 JavaScript 并使其激活。 对于折叠在下面的组件或者比较占用资源的组件可以用这个方法 -->
-  <!-- 不加入 client:* 模板指令的话，默认组件是不执行组件中的任何Javascript代码的，只支持静态HTML -->
-  <!-- client:only 仅在客户端执行 -->
-  <Table client:only />
-</div>
