@@ -1,4 +1,4 @@
-import { clearTokens, getAccessToken } from '@/request/tokens'
+import { clearTokens, getAccessToken } from '@/request'
 import * as jose from 'jose'
 import { createSignal, onMount, type Component, type JSX } from 'solid-js'
 

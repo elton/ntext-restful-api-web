@@ -1,6 +1,6 @@
 import { apiClient } from '@/request'
+import type { APIResponse, TokenResponse } from '@/types'
 import type { AxiosRequestConfig } from 'axios'
-import type { APIResponse, TokenResponse } from '../types'
 import { getRefreshToken } from './tokens'
 
 let promise: Promise<boolean> | null = null

@@ -1,16 +1,14 @@
-import { format, parseISO } from 'date-fns'
-import type { Component, JSX } from 'solid-js'
-import { For, Show, createEffect, createSignal, onMount } from 'solid-js'
-import type { APIResponse, User } from '../../types'
-import Modal from '../Modal'
-import Pagination from '../Pagination'
-import type { Claims, UserData } from './types'
-// import the store for the alert box
-import { apiClient } from '@/request'
-import { getAccessToken } from '@/request/tokens'
+import { apiClient, getAccessToken } from '@/request'
+import type { APIResponse, User } from '@/types'
+import Modal from '@components/Modal'
+import Pagination from '@components/Pagination'
 import { $alertStore } from '@store/AlertStore'
 import type { AxiosResponse } from 'axios'
+import { format, parseISO } from 'date-fns'
 import * as jose from 'jose'
+import type { Component, JSX } from 'solid-js'
+import { For, Show, createEffect, createSignal, onMount } from 'solid-js'
+import type { Claims, UserData } from './types'
 
 const API_ENDPOINT = import.meta.env.PUBLIC_BACKEND_ENDPOINT
 

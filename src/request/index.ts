@@ -1,6 +1,5 @@
 import type { TokenResponse } from '@/types'
-import type { AxiosResponse } from 'axios'
-import axios from 'axios'
+import axios, { type AxiosResponse } from 'axios'
 import type { APIResponse } from '../types'
 import { isRefreshToken, refresh_token } from './refresh_token'
 import { getAccessToken, setAccessToken, setRefreshToken } from './tokens'
@@ -55,3 +54,7 @@ apiClient.interceptors.response.use(
     return Promise.reject(error)
   },
 )
+
+// re-export tokens and refresh_token functions
+export * from './refresh_token'
+export * from './tokens'
