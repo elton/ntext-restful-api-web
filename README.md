@@ -7,7 +7,8 @@ This is a web client for the Ntex Restful API server. It is a simple web applica
 - [Astro](https://astro.build/)
 - [UnoCSS](https://unocss.com/)
 - [SolidJS](https://solidjs.com/)
-- [nanostores](https://github.com/nanostores/nanostores)
+- [NanoStores](https://github.com/nanostores/nanostores)
+- [Axios](https://axios-http.com/)
 
 ## Design
 
@@ -23,3 +24,5 @@ This is a simple **pure static** web application for the Ntex Restful API server
 - [x] Use SolidJS to build most of the dynamic components of this static web application.
 - [x] Use Astro compression to compress the static web application.
 - [x] Can deploy this static web application to a CDN.
+- [ ] Support multiple languages.
+- [ ] Support dark mode.
