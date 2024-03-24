@@ -1,0 +1,27 @@
+---
+import Doc from '@layouts/Doc.astro'
+import { type CollectionEntry, getCollection } from 'astro:content'
+
+export const getStaticPaths = async () => {
+  const docs = await getCollection('docs')
+
+  return docs.map((doc) => {
+    const [lang, slug] = doc.slug.split('/')
+
+    return {
+      params: { slug: lang === 'en' ? slug : `${lang}/${slug}` },
+      props: doc,
+    }
+  })
+}
+
+type Props = CollectionEntry<'docs'>
+
+const doc = Astro.props
+
+const { Content } = await doc.render()
+---
+
+<Doc {...doc.data}>
+  <div><Content /></div>
+</Doc>

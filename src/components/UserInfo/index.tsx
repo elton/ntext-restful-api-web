@@ -17,7 +17,7 @@ const UserInfo: Component = (): JSX.Element => {
   return (
     <div>
       <div
-        class='flex h-fit space-x-2 items-center mr-4 pt-4 shrink cursor-grab'
+        class='flex h-fit space-x-2 items-center mr-4 pt-4 shrink cursor-pointer'
         onClick={() => setShowUserDetail(!showUserDetail())}>
         <div class='text-center space-y-2'>
           <img

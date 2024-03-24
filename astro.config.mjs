@@ -23,4 +23,8 @@ export default defineConfig({
     // Use AstroCompress last in your integration list for the best optimization.
     compress(),
   ],
+  i18n: {
+    locales: ['en', 'zh'],
+    defaultLocale: 'en',
+  },
 })

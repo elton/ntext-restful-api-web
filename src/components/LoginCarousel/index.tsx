@@ -1,8 +1,24 @@
 import { initCarousels } from '@components/Carousel'
 import type { Component, JSX } from 'solid-js'
-import { onMount } from 'solid-js'
+import { createEffect, createSignal, onMount } from 'solid-js'
 
+import { useTranslations } from '@/i18n/utils'
+import { useStore } from '@nanostores/solid'
+import { $langStore } from '@store/lang'
+
+type CarouselData = [
+  {
+    title: string
+    content: string
+  },
+]
 const LoginCarousel: Component = (): JSX.Element => {
+  const lang = useStore($langStore)
+  const [UI, setUI] = createSignal<CarouselData>([] as unknown as CarouselData)
+  createEffect(() => {
+    const t = useTranslations(lang())
+    setUI(t('login.carousel') as unknown as CarouselData)
+  })
   onMount(() => initCarousels())
   return (
     <div id='default-carousel' class='relative w-full' data-carousel='slide'>
@@ -15,10 +31,10 @@ const LoginCarousel: Component = (): JSX.Element => {
           data-carousel-item>
           <div class='absolute w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 px-4 space-y-1'>
             <div class='text-white/80 font-medium text-lg'>
-              Connect with everyone and every application
+              {UI().length > 0 && UI()[0].title}
             </div>
             <div class='text-sm text-white/50'>
-              Everything you need in an easily customizable dashboard.
+              {UI().length > 0 && UI()[0].content}
             </div>
           </div>
         </div>
@@ -29,11 +45,10 @@ const LoginCarousel: Component = (): JSX.Element => {
           data-carousel-item>
           <div class='absolute w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 px-4 space-y-1'>
             <div class='text-white/80 font-medium text-lg'>
-              Intelligent analytics and AI-powered insights
+              {UI().length > 1 && UI()[1].title}
             </div>
             <div class='text-sm text-white/50'>
-              Intelligent analytics and AI-assisted decision-making help you
-              uncover endless opportunities and conquer new business heights.
+              {UI().length > 1 && UI()[1].content}
             </div>
           </div>
         </div>
@@ -44,12 +59,10 @@ const LoginCarousel: Component = (): JSX.Element => {
           data-carousel-item>
           <div class='absolute w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 px-4 space-y-1'>
             <div class='text-white/80 font-medium text-lg'>
-              Streamline your workflow, maximize efficiency
+              {UI().length > 2 && UI()[2].title}
             </div>
             <div class='text-sm text-white/50'>
-              Consolidate disparate tools and processes into one centralized
-              platform, eliminating redundancies and streamlining your daily
-              operations for maximum productivity.
+              {UI().length > 2 && UI()[2].content}
             </div>
           </div>
         </div>

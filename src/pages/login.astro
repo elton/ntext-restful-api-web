@@ -3,6 +3,8 @@ import Main from '@layouts/Main.astro'
 import LoginCarousel from '@components/LoginCarousel'
 import LoginForm from '@components/LoginForm'
 import AlertBox from '@components/AlertBox'
+import Logo from '@components/Logo'
+import LanguagePicker from '@components/LanguagePicker'
 ---
 
 <Main
@@ -10,24 +12,12 @@ import AlertBox from '@components/AlertBox'
   description='a demo web client app build with astro, solidjs, typescript and unoCSS for Ntex restful api server'
   bgColor='bg-[#D6DBE0]'>
   <AlertBox client:load />
-  <div class='min-h-screen flex items-center'>
+  <div class='flex justify-end mt-4 mr-4'><LanguagePicker client:only /></div>
+  <div class='grid grid-cols-1 place-content-center h-screen'>
     <div class='flex bg-white rounded-lg overflow-hidden w-4/5 mx-auto'>
       <div class='w-1/2 relative'>
         <div class='absolute top-1/2 -translate-y-1/2 w-full'>
-          <div class='mb-16 space-y-8'>
-            <div
-              class='flex w-full items-center justify-center gap-x-4 text-4xl p-2'>
-              <!-- Use any icon with Pure CSS for UnoCSS. https://unocss.dev/presets/icons -->
-              <div class='i-logos-astro w-6em h-2em transform transition-800'>
-              </div>
-              <div class='text-4xl font-semibold text-gray-700'>+</div>
-              <div class='i-logos-unocss w-2em h-2em'></div>
-            </div>
-            <div
-              class='text-4xl font-medium text-center text-blueGray-600 font-serif'>
-              Demo Application Login
-            </div>
-          </div>
+          <div class='mb-8'><Logo client:only /></div>
           <LoginForm client:only />
         </div>
       </div>
@@ -36,5 +26,5 @@ import AlertBox from '@components/AlertBox'
         <LoginCarousel client:only />
       </div>
     </div>
-  </div></Main
->
+  </div>
+</Main>

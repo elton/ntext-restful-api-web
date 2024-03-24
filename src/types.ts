@@ -1,3 +1,5 @@
+import { languages } from '@/i18n/ui'
+
 // API 响应类型
 export declare type APIResponse<T extends object> = {
   status: string
@@ -25,3 +27,6 @@ export declare type User = {
   created_at?: string
   modified_at?: string
 }
+
+export declare type LangType = keyof typeof languages
+// keyof操作符用于获取languages对象的所有键,生成一个联合类型,等同于 type LangType = 'en' | 'zh';

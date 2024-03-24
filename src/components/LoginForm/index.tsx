@@ -2,17 +2,39 @@ import { apiClient } from '@/request'
 import type { APIResponse } from '@/types'
 import type { AxiosError, AxiosResponse } from 'axios'
 import type { Component } from 'solid-js'
-import { createSignal } from 'solid-js'
+import { createEffect, createSignal } from 'solid-js'
 import type { LoginData, LoginValues } from './types'
 
 // import the store for the alert box
 import { $alertStore } from '@store/AlertStore'
 
+import { useTranslations } from '@/i18n/utils'
+import { useStore } from '@nanostores/solid'
+import { $langStore } from '@store/lang'
+
 const LoginForm: Component = () => {
+  const lang = useStore($langStore)
+  const [UI, setUI] = createSignal({
+    email: '',
+    password: '',
+    remember: '',
+    submit: '',
+  })
+
   const [loginValues, setLoginValues] = createSignal<LoginValues>({
     email: '',
     password: '',
     remember: false,
+  })
+
+  createEffect(() => {
+    const t = useTranslations(lang())
+    setUI({
+      email: t('login.email') as string,
+      password: t('login.password') as string,
+      remember: t('login.remember') as string,
+      submit: t('login.submit') as string,
+    })
   })
 
   // handle the form submission
@@ -51,7 +73,7 @@ const LoginForm: Component = () => {
   return (
     <form onSubmit={handleSubmit} class='w-2/3 mx-auto'>
       <label for='email' aria-label='email' class='text-gray-600'>
-        Email
+        {UI().email}
       </label>
       <div class='relative mb-4'>
         <div class='absolute top-1/2 -translate-y-1/2 left-2 i-heroicons:envelope-16-solid text-gray-500 w-1.5em h-1.5em'></div>
@@ -68,7 +90,7 @@ const LoginForm: Component = () => {
         />
       </div>
       <label for='password' aria-label='password' class='text-gray-600'>
-        Password
+        {UI().password}
       </label>
       <div class='relative mb-4'>
         <div class='absolute top-1/2 -translate-y-1/2 left-2 i-heroicons:lock-closed-20-solid w-1.5em h-1.5em text-gray-500'></div>
@@ -94,13 +116,13 @@ const LoginForm: Component = () => {
           class='m-2'
         />
         <label for='remember' class='text-gray-600'>
-          Remember me
+          {UI().remember}
         </label>
       </div>
       <button
         type='submit'
         class='w-full p-2 my-2 bg-blue-500 text-white rounded-md hover:bg-blue-600'>
-        Login
+        {UI().submit}
       </button>
     </form>
   )

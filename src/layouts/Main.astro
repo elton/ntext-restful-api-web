@@ -1,16 +1,17 @@
 ---
 import Footer from '@/components/Footer.astro'
+import { getLangFromUrl } from '@/i18n/utils'
 
 interface Props {
   title: string
   description?: string
   bgColor?: string
 }
-
+const lang = getLangFromUrl(Astro.url)
 const { title, description = '', bgColor = 'bg-white' } = Astro.props
 ---
 
-<html lang='en'>
+<html lang={lang}>
   <head>
     <meta charset='utf-8' />
     <meta name='viewport' content='width=device-width' />
@@ -19,7 +20,7 @@ const { title, description = '', bgColor = 'bg-white' } = Astro.props
     <title>{title}</title>
   </head>
   <body class={bgColor}>
-    <main class='container mx-auto'>
+    <main class='container mx-auto min-h-screen'>
       <slot />
     </main>
     <Footer />

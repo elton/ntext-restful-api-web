@@ -15,7 +15,7 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "^0.5.9",
+    "@astrojs/check": "^0.5.10",
     "@astrojs/solid-js": "^4.0.1",
     "@nanostores/solid": "^0.4.2",
     "astro": "^4.5.9",

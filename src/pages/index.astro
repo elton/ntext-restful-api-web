@@ -4,6 +4,8 @@ import Main from '@layouts/Main.astro'
 import Table from '@components/Table'
 import AlertBox from '@components/AlertBox'
 import UserInfo from '@components/UserInfo'
+import LanguagePicker from '@components/LanguagePicker'
+import Logo from '@components/Logo'
 ---
 
 <script>
@@ -16,17 +18,9 @@ import UserInfo from '@components/UserInfo'
   description='a demo web client app build with astro, solidjs, typescript and unoCSS for Ntex restful api server'>
   <AlertBox client:only />
   <div class='flex justify-between'>
-    <div class='w-fit mx-auto grow'>
-      <div
-        class='flex w-full items-center justify-center gap-x-4 text-4xl p-2 my-8'>
-        <!-- Use any icon with Pure CSS for UnoCSS. https://unocss.dev/presets/icons -->
-        <div class='i-logos-astro w-6em h-2em transform transition-800'></div>
-        <div class='text-4xl font-semibold text-gray-700'>+</div>
-        <div class='i-logos-unocss w-2em h-2em'></div>
-      </div>
-      <div class='text-4xl font-semibold text-center text-blueGray-600'>
-        Demo Application
-      </div>
+    <Logo client:only />
+    <div class='mt-7 mr-4'>
+      <LanguagePicker client:only />
     </div>
 
     <UserInfo client:only />

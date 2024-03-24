@@ -1,7 +1,10 @@
+import { useTranslations } from '@/i18n/utils'
 import { apiClient, getAccessToken } from '@/request'
+import { $langStore } from '@/store/lang'
 import type { APIResponse, User } from '@/types'
 import Modal from '@components/Modal'
 import Pagination from '@components/Pagination'
+import { useStore } from '@nanostores/solid'
 import { $alertStore } from '@store/AlertStore'
 import type { AxiosResponse } from 'axios'
 import { format, parseISO } from 'date-fns'
@@ -23,6 +26,16 @@ const Table: Component = (): JSX.Element => {
   const [selectedUserId, setSelectedUserId] = createSignal<number | null>(null)
   const [searchInput, setSearchInput] = createSignal('')
   const [searchTerm, setSearchTerm] = createSignal('')
+  const [UI, setUI] = createSignal({
+    createButton: '',
+    id: '',
+    name: '',
+    createdat: '',
+    updatedat: '',
+    actions: '',
+  })
+
+  const lang = useStore($langStore)
 
   const fetchUsers = async (searchTerm = '') => {
     setLoading(true)
@@ -134,6 +147,20 @@ const Table: Component = (): JSX.Element => {
     generatePaginationNumbers(page(), 5, pageSize(), amount())
   })
 
+  // 监听语言变化,不能放在异步方法里
+  createEffect(() => {
+    // LanguagePicker组件中的createEffect已经根据cookie中的语言设置更新了langStore
+    const t = useTranslations(lang())
+    setUI({
+      createButton: t('table.createButton') as string,
+      id: t('table.id') as string,
+      name: t('table.name') as string,
+      createdat: t('table.createdat') as string,
+      updatedat: t('table.updatedat') as string,
+      actions: t('table.actions') as string,
+    })
+  })
+
   return (
     <>
       <Show
@@ -179,7 +206,7 @@ const Table: Component = (): JSX.Element => {
           <button
             class='bg-sky-600 text-white py-2 px-4 rounded-lg text-sm hover:bg-sky-700'
             onClick={() => handleEditClick()}>
-            Create New User
+            {UI().createButton}
           </button>
         </div>
         <table class='w-full text-sm text-left text-gray-500 dark:text-gray-400'>
@@ -198,19 +225,19 @@ const Table: Component = (): JSX.Element => {
                 </div>
               </th>
               <th scope='col' class='px-6 py-3'>
-                ID
+                {UI().id}
               </th>
               <th scope='col' class='px-6 py-3'>
-                Name
+                {UI().name}
               </th>
               <th scope='col' class='px-6 py-3'>
-                Created at
+                {UI().createdat}
               </th>
               <th scope='col' class='px-6 py-3'>
-                Updated at
+                {UI().updatedat}
               </th>
               <th scope='col' class='px-6 py-3'>
-                Actions
+                {UI().actions}
               </th>
             </tr>
           </thead>
