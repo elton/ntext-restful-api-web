@@ -23,7 +23,6 @@ const Modal: Component<EditUserModalProps> = (props) => {
     password: '',
     role: '',
   })
-  const [accessToken, setAccessToken] = createSignal('')
 
   // 定义密码校验规则
   const passwordRegex =
@@ -138,8 +137,6 @@ const Modal: Component<EditUserModalProps> = (props) => {
       )
       $alertStore.setKey('type', 'error')
       return
-    } else {
-      setAccessToken(access_token)
     }
 
     if (props.userID) {

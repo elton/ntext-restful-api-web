@@ -1,7 +1,5 @@
 import { useTranslations } from '@/i18n/utils'
 import { $langStore } from '@/store/lang'
-import type { LangType } from '@/types'
-import { readCookie } from '@/utils'
 import { useStore } from '@nanostores/solid'
 import {
   createEffect,

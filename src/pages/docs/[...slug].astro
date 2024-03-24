@@ -1,6 +1,7 @@
 ---
 import Doc from '@layouts/Doc.astro'
 import { type CollectionEntry, getCollection } from 'astro:content'
+import { defaultLang } from '@/i18n/ui'
 
 export const getStaticPaths = async () => {
   const docs = await getCollection('docs')
@@ -9,7 +10,7 @@ export const getStaticPaths = async () => {
     const [lang, slug] = doc.slug.split('/')
 
     return {
-      params: { slug: lang === 'en' ? slug : `${lang}/${slug}` },
+      params: { slug: lang === defaultLang ? slug : `${lang}/${slug}` },
       props: doc,
     }
   })

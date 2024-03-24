@@ -1,14 +1,25 @@
 ---
 import type { CollectionEntry } from 'astro:content'
-import Footer from '@/components/Footer.astro'
+import Footer from '@/components/Footer'
 import FormattedDate from '@components/FormattedDate.astro'
+import Nav from '@components/Nav'
+
 type Props = CollectionEntry<'docs'>['data']
 
 const { title, summary, category, tags, pubDate, author, heroImage } =
   Astro.props
 ---
 
-<html lang='en'>
+<script>
+  import type { LangType } from '@/types'
+  import { readCookie } from '@/utils'
+
+  // get root element of the document
+  const htmlElem = document.documentElement
+  htmlElem.lang = readCookie('lang') as LangType
+</script>
+
+<html>
   <head>
     <!-- Astro的css默认是作用于当前文件的元素的，slot中的内容无法起作用。所以要加上`is:global`使它全局生效 -->
     <style is:global>
@@ -85,6 +96,7 @@ const { title, summary, category, tags, pubDate, author, heroImage } =
   </head>
   <body class='bg-slate-800 p-8'>
     <main>
+      <Nav client:only />
       <div class='text-gray-300 space-y-8 w-4/5 mx-auto'>
         <h1 class='text-white font-bold text-5xl'>
           {title}
@@ -188,6 +200,6 @@ const { title, summary, category, tags, pubDate, author, heroImage } =
         </div>
       </div>
     </main>
-    <Footer />
+    <Footer client:only />
   </body>
 </html>

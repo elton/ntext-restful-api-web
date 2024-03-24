@@ -35,6 +35,7 @@ export const ui = {
     'table.createdat': 'Created At',
     'table.updatedat': 'Updated At',
     'table.actions': 'Actions',
+    'nav.home': 'Home',
   },
   zh: {
     'login.title': '演示程序登录',
@@ -65,5 +66,6 @@ export const ui = {
     'table.createdat': '创建时间',
     'table.updatedat': '更新时间',
     'table.actions': '操作',
+    'nav.home': '主页',
   },
 } as const

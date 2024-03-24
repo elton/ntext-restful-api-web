@@ -6,18 +6,17 @@ import { useTranslations } from '@/i18n/utils'
 import { useStore } from '@nanostores/solid'
 import { $langStore } from '@store/lang'
 
-type CarouselData = [
-  {
-    title: string
-    content: string
-  },
-]
+type CarouselData = {
+  title: string
+  content: string
+}
+
 const LoginCarousel: Component = (): JSX.Element => {
   const lang = useStore($langStore)
-  const [UI, setUI] = createSignal<CarouselData>([] as unknown as CarouselData)
+  const [UI, setUI] = createSignal<CarouselData[]>([] as CarouselData[])
   createEffect(() => {
     const t = useTranslations(lang())
-    setUI(t('login.carousel') as unknown as CarouselData)
+    setUI(t('login.carousel') as unknown as CarouselData[])
   })
   onMount(() => initCarousels())
   return (
@@ -30,12 +29,8 @@ const LoginCarousel: Component = (): JSX.Element => {
           class='hidden duration-700 ease-in-out w-full h-48 bg-blue-600'
           data-carousel-item>
           <div class='absolute w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 px-4 space-y-1'>
-            <div class='text-white/80 font-medium text-lg'>
-              {UI().length > 0 && UI()[0].title}
-            </div>
-            <div class='text-sm text-white/50'>
-              {UI().length > 0 && UI()[0].content}
-            </div>
+            <div class='text-white/80 font-medium text-lg'>{UI()[0].title}</div>
+            <div class='text-sm text-white/50'>{UI()[0].content}</div>
           </div>
         </div>
         {/* <!-- item 2 --> */}
@@ -44,12 +39,8 @@ const LoginCarousel: Component = (): JSX.Element => {
           class='hidden duration-700 ease-in-out w-full h-48 bg-blue-600'
           data-carousel-item>
           <div class='absolute w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 px-4 space-y-1'>
-            <div class='text-white/80 font-medium text-lg'>
-              {UI().length > 1 && UI()[1].title}
-            </div>
-            <div class='text-sm text-white/50'>
-              {UI().length > 1 && UI()[1].content}
-            </div>
+            <div class='text-white/80 font-medium text-lg'>{UI()[1].title}</div>
+            <div class='text-sm text-white/50'>{UI()[1].content}</div>
           </div>
         </div>
         {/* <!-- item 3 --> */}
@@ -58,12 +49,8 @@ const LoginCarousel: Component = (): JSX.Element => {
           class='hidden duration-700 ease-in-out w-full h-48 bg-blue-600'
           data-carousel-item>
           <div class='absolute w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 px-4 space-y-1'>
-            <div class='text-white/80 font-medium text-lg'>
-              {UI().length > 2 && UI()[2].title}
-            </div>
-            <div class='text-sm text-white/50'>
-              {UI().length > 2 && UI()[2].content}
-            </div>
+            <div class='text-white/80 font-medium text-lg'>{UI()[2].title}</div>
+            <div class='text-sm text-white/50'>{UI()[2].content}</div>
           </div>
         </div>
       </div>
