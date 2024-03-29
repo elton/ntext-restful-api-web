@@ -1,9 +1,7 @@
 import { apiClient } from '@/request'
 import type { APIResponse, User } from '@/types'
-import type { UserData } from '@components/Table/types'
 import type { Component } from 'solid-js'
 import { Show, createSignal, onMount } from 'solid-js'
-import type { EditUserModalProps } from './types'
 
 // import the store for the alert box
 import { $alertStore } from '@store/AlertStore'

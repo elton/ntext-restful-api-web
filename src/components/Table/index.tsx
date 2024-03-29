@@ -11,7 +11,6 @@ import { format, parseISO } from 'date-fns'
 import * as jose from 'jose'
 import type { Component, JSX } from 'solid-js'
 import { For, Show, createEffect, createSignal, onMount } from 'solid-js'
-import type { Claims, UserData } from './types'
 
 const API_ENDPOINT = import.meta.env.PUBLIC_BACKEND_ENDPOINT
 

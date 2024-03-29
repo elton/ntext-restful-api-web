@@ -1,16 +1,15 @@
-import type { User } from '@/types'
-export declare type LoginValues = {
+type LoginValues = {
   email: string
   password: string
   remember: boolean
 }
 
-export declare type Token = {
+type Token = {
   access_token: string
   refresh_token: string
 }
 
-export declare type LoginData = {
+type LoginData = {
   token: Token
   user: User
 }

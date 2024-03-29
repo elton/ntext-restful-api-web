@@ -1,4 +1,4 @@
-export declare type PaginationProps = {
+declare type PaginationProps = {
   currentPage: number
   totalPages: number
   pageSize: number

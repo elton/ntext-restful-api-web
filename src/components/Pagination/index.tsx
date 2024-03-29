@@ -1,5 +1,4 @@
 import { Show, type Component } from 'solid-js'
-import type { PaginationProps } from './types'
 
 const Pagination: Component<PaginationProps> = (props) => {
   return (

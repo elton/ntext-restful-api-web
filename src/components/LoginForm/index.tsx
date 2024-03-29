@@ -1,14 +1,13 @@
 import { apiClient } from '@/request'
-import type { APIResponse } from '@/types'
 import type { AxiosError, AxiosResponse } from 'axios'
 import type { Component } from 'solid-js'
 import { createEffect, createSignal } from 'solid-js'
-import type { LoginData, LoginValues } from './types'
 
 // import the store for the alert box
 import { $alertStore } from '@store/AlertStore'
 
 import { useTranslations } from '@/i18n/utils'
+import type { APIResponse } from '@/types'
 import { useStore } from '@nanostores/solid'
 import { $langStore } from '@store/lang'
 

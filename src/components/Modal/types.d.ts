@@ -1,4 +1,4 @@
-export declare type EditUserModalProps = {
+declare type EditUserModalProps = {
   userID: number | null
   onClose: () => void
 }
