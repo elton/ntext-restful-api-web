@@ -1,0 +1,79 @@
+name: Build and Deploy API Web Client
+
+on:
+  # Triggers the workflow on push events but only for the main branch and release tag
+  push:
+    branches: [main]
+    tags:
+      # Regex for a version number such as 0.2.1
+      - '[0-9]+.[0-9]+.[0-9]+'
+  pull_request:
+    branches:
+      - main
+
+env:
+  PACKAGE_NAME: ntex-restful-api-web
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
+      - name: Package dist
+        run: tar -czf dist.tar.gz dist/
+
+      - name: Upload tar package
+        uses: actions/upload-artifact@v4
+        with:
+          name: api-web-package
+          path: dist.tar.gz
+
+  deploy:
+    needs: build
+    name: Deploy API Server
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download binary
+        uses: actions/download-artifact@v4
+        with:
+          name: api-web-package
+          path: distfiles
+
+      - name: copy file via ssh key
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.PORT }}
+          rm: true
+          source: 'distfiles/dist.tar.gz'
+          target: '/var/www/demo.pwr.ink/'
+          strip_components: 1
+
+      - name: Start API server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            cd /var/www/demo.pwr.ink/
+            rm -rf public
+            tar -xzf dist.tar.gz -C public
+            rm -f dist.tar.gz
+            systemctl reload nginx
