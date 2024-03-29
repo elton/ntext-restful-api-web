@@ -73,7 +73,8 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
             cd /var/www/demo.pwr.ink/
-            # rm -rf public
-            # tar -xzf dist.tar.gz -C public
-            # rm -f dist.tar.gz
-            # systemctl reload nginx
+            rm -rf public
+            mkdir public
+            tar -xzf dist.tar.gz -C public --strip-components=1
+            rm -f dist.tar.gz
+            systemctl reload nginx
