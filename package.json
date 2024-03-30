@@ -33,7 +33,6 @@
     "@unocss/preset-icons": "^0.58.8",
     "@unocss/reset": "^0.58.8",
     "dotenv": "^16.4.5",
-    "prettier-plugin-astro": "^0.13.0",
     "unocss": "^0.58.8"
   }
 }
