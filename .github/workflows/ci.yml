@@ -76,4 +76,5 @@ jobs:
             mkdir public
             tar -xzf dist.tar.gz -C public --strip-components=1
             rm -f dist.tar.gz
+            chown -R nginx:nginx public
             systemctl reload nginx

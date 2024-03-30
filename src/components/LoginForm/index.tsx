@@ -1,7 +1,7 @@
 import { apiClient } from '@/request'
 import type { AxiosError, AxiosResponse } from 'axios'
 import type { Component } from 'solid-js'
-import { createEffect, createSignal } from 'solid-js'
+import { createEffect, createSignal, onMount } from 'solid-js'
 
 // import the store for the alert box
 import { $alertStore } from '@store/AlertStore'
@@ -10,6 +10,8 @@ import { useTranslations } from '@/i18n/utils'
 import type { APIResponse } from '@/types'
 import { useStore } from '@nanostores/solid'
 import { $langStore } from '@store/lang'
+
+const API_ENDPOINT = import.meta.env.PUBLIC_BACKEND_ENDPOINT
 
 const LoginForm: Component = () => {
   const lang = useStore($langStore)
@@ -24,6 +26,12 @@ const LoginForm: Component = () => {
     email: '',
     password: '',
     remember: false,
+  })
+
+  onMount(() => {
+    // 显示当前Node环境
+    console.log(`当前Node环境: ${import.meta.env.MODE}`)
+    console.log(`当前后端地址: ${API_ENDPOINT}`)
   })
 
   createEffect(() => {

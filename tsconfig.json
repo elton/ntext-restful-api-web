@@ -17,6 +17,7 @@
       "@components/*": ["src/components/*"],
       "@layouts/*": ["src/layouts/*"],
       "@store/*": ["src/store/*"],
+      "@assets/*": ["src/assets/*"],
       "@/*": ["src/*"]
     },
     // "outDir": "dist",

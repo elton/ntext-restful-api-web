@@ -5,6 +5,7 @@ import LoginForm from '@components/LoginForm'
 import AlertBox from '@components/AlertBox'
 import Logo from '@components/Logo'
 import LanguagePicker from '@components/LanguagePicker'
+import LoginImage from '@assets/login.svg'
 ---
 
 <Main
@@ -22,7 +23,7 @@ import LanguagePicker from '@components/LanguagePicker'
         </div>
       </div>
       <div class='bg-blue-600 w-1/2'>
-        <img src='/login.svg' alt='login' class='w-3/5 mx-auto my-8' />
+        <img src={LoginImage.src} alt='login' class='w-3/5 mx-auto my-8' />
         <LoginCarousel client:only />
       </div>
     </div>
