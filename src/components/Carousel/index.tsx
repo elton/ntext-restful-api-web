@@ -10,7 +10,7 @@ const Carousel: Component<CarouselProps> = (
   props: CarouselProps,
 ): JSX.Element => {
   const [currentIndex, setCurrentIndex] = createSignal(0)
-  let intervalId: NodeJS.Timeout
+  let intervalId: number
 
   const goToNext = () => {
     setCurrentIndex((currentIndex() + 1) % props.items.length)
