@@ -23,6 +23,6 @@ const { title, description = '', bgColor = 'bg-white' } = Astro.props
     <main class='container mx-auto min-h-screen'>
       <slot />
     </main>
-    <Footer client:only />
+    <Footer client:only='solid-js' />
   </body>
 </html>
