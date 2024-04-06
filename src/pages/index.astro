@@ -16,19 +16,19 @@ import Logo from '@components/Logo'
 <Main
   title='Astro + UnoCSS'
   description='a demo web client app build with astro, solidjs, typescript and unoCSS for Ntex restful api server'>
-  <AlertBox client:only />
+  <AlertBox client:only='solid-js' />
   <div class='flex justify-between'>
-    <Logo client:only />
+    <Logo client:only='solid-js' />
     <div class='mt-7 mr-4'>
-      <LanguagePicker client:only />
+      <LanguagePicker client:only='solid-js' />
     </div>
 
-    <UserInfo client:only />
+    <UserInfo client:only='solid-js' />
   </div>
   <div class='w-5xl mx-auto my-8'>
     <!-- Astro中的模版指令 client:visible 表示一旦组件进入用户的视口，就加载组件的 JavaScript 并使其激活。 对于折叠在下面的组件或者比较占用资源的组件可以用这个方法 -->
     <!-- 不加入 client:* 模板指令的话，默认组件是不执行组件中的任何Javascript代码的，只支持静态HTML -->
     <!-- client:only 仅在客户端执行 -->
-    <Table client:only />
+    <Table client:only='solid-js' />
   </div>
 </Main>

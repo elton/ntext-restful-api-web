@@ -96,7 +96,7 @@ const { title, summary, category, tags, pubDate, author, heroImage } =
   </head>
   <body class='bg-slate-800 p-8'>
     <main>
-      <Nav client:only />
+      <Nav client:only='solid-js' />
       <div class='text-gray-300 space-y-8 w-4/5 mx-auto'>
         <h1 class='text-white font-bold text-5xl'>
           {title}
@@ -200,6 +200,6 @@ const { title, summary, category, tags, pubDate, author, heroImage } =
         </div>
       </div>
     </main>
-    <Footer client:only />
+    <Footer client:only='solid-js' />
   </body>
 </html>

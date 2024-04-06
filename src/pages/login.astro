@@ -13,18 +13,20 @@ import LoginImage from '@assets/login.svg'
   description='a demo web client app build with astro, solidjs, typescript and unoCSS for Ntex restful api server'
   bgColor='bg-[#D6DBE0]'>
   <AlertBox client:load />
-  <div class='flex justify-end mt-4 mr-4'><LanguagePicker client:only /></div>
+  <div class='flex justify-end mt-4 mr-4'>
+    <LanguagePicker client:only='solid-js' />
+  </div>
   <div class='grid grid-cols-1 place-content-center h-screen'>
     <div class='flex bg-white rounded-lg overflow-hidden w-4/5 mx-auto'>
       <div class='w-1/2 relative'>
         <div class='absolute top-1/2 -translate-y-1/2 w-full'>
-          <div class='mb-8'><Logo client:only /></div>
-          <LoginForm client:only />
+          <div class='mb-8'><Logo client:only='solid-js' /></div>
+          <LoginForm client:only='solid-js' />
         </div>
       </div>
       <div class='bg-blue-600 w-1/2'>
         <img src={LoginImage.src} alt='login' class='w-3/5 mx-auto my-8' />
-        <LoginCarousel client:only />
+        <LoginCarousel client:only='solid-js' />
       </div>
     </div>
   </div>

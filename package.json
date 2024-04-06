@@ -18,6 +18,7 @@
     "@astrojs/check": "^0.5.10",
     "@astrojs/solid-js": "^4.0.1",
     "@nanostores/solid": "^0.4.2",
+
     "astro": "^4.5.16",
     "axios": "^1.6.8",
     "date-fns": "^3.6.0",
