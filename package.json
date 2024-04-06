@@ -18,21 +18,21 @@
     "@astrojs/check": "^0.5.10",
     "@astrojs/solid-js": "^4.0.1",
     "@nanostores/solid": "^0.4.2",
-    "astro": "^4.5.12",
+    "astro": "^4.5.16",
     "axios": "^1.6.8",
     "date-fns": "^3.6.0",
     "jose": "^5.2.3",
-    "nanostores": "^0.10.0",
+    "nanostores": "^0.10.3",
     "solid-js": "^1.8.16",
-    "typescript": "^5.4.3"
+    "typescript": "^5.4.4"
   },
   "devDependencies": {
     "@iconify-json/heroicons": "^1.1.20",
     "@iconify-json/logos": "^1.1.42",
     "@iconify-json/svg-spinners": "^1.1.2",
-    "@unocss/preset-icons": "^0.58.8",
-    "@unocss/reset": "^0.58.8",
+    "@unocss/preset-icons": "^0.59.0",
+    "@unocss/reset": "^0.59.0",
     "dotenv": "^16.4.5",
-    "unocss": "^0.58.8"
+    "unocss": "^0.59.0"
   }
 }
